@@ -127,8 +127,10 @@ h1 + p {
   animation: flip 3s infinite;
 }
 /* Phần Tech Stack--------------------------- */
-
-.tech-stack ul {
+.lappland +p {text-align: center;
+  font-size: 25px;
+  padding-bottom: 40px;}
+.lappland ul {
   display: flex;
   padding-bottom: 60px;
   list-style: none;
@@ -136,24 +138,62 @@ h1 + p {
   justify-content: center;
   gap: 80px;
 }
-.tech-stack ul {
+.lappland ul {
   flex: 0 0 calc(16.666% - 20px); /* Điều chỉnh kích thước và khoảng cách giữa các ảnh */
   display: flex;
   justify-content: center;
 }
 
-.tech-stack img {
+.lappland img {
   max-width: 100%;
   height: auto;
   transition: transform 3s; 
 }
 
-.tech-stack li:hover img {
+.lappland li:hover img {
   transform: rotate(1080deg); 
 }
-.tech-stack ul li a img {
+.lappland ul li a img {
   width: 120px;
   height: 120px;
+}
+#lappland h1 {
+  margin-bottom: 5px;
+}
+
+
+#lappland-container {
+  text-align: center;
+}
+
+#lappland-img {
+  max-width: 500px;
+  border-radius: 10px;
+  margin: 10px auto;
+  display: block;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+#lappland-source {
+  font-size: 14px;
+  color: gray;
+  margin-top: 8px;
+  word-break: break-all;
+}
+
+#lappland-container button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  background: #444;
+  color: white;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s ease;
+}
+
+#lappland-container button:hover {
+  background: #666;
 }
 /* <!-- Phần Projects--------------------------- --> */
 h3 {
