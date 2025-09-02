@@ -189,7 +189,6 @@ h1 + p {
   color: white;
   cursor: pointer;
   margin-top: 10px;
-  transition: background 0.3s ease;
 }
 
 #lappland-container button:hover {
