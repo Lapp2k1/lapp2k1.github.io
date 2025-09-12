@@ -22,7 +22,7 @@ h1 {
 h1 + p {
   text-align: center;
   font-size: 25px;
-  padding-bottom: 140px;
+  padding-bottom: 40px;
 }
 
 /* Phần nav bar -------------------------*/
@@ -127,6 +127,15 @@ h1 + p {
   animation: flip 3s infinite;
 }
 /* Phần Tech Stack--------------------------- */
+#lappland {
+  margin-top: 0px;
+}
+@media screen and (max-width: 735.2px) {
+
+  #lappland {
+      margin-top: 100px;
+    }
+}
 .lappland +p {text-align: center;
   font-size: 25px;
   padding-bottom: 40px;}
@@ -158,7 +167,7 @@ h1 + p {
   height: 120px;
 }
 #lappland h1 {
-  margin-bottom: 5px;
+  margin-bottom: -34px;
 }
 
 
@@ -193,6 +202,85 @@ h1 + p {
 
 #lappland-container button:hover {
   background: #666;
+}
+.reload-art {
+  position: relative;
+  overflow: hidden;
+  width: 130px;
+  height: 48px;
+  background: black;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+}
+
+/* Nền hiệu ứng */
+.reload-art .bg {
+  position: absolute;
+  top: -32px;
+  left: -8px;
+  width: 140px;
+  height: 120px;
+  transform: rotate(12deg) scaleX(0);
+  transform-origin: left;
+  transition: transform 1s;
+  z-index: 0;
+}
+
+.reload-art .layer1 {
+  background: white;
+  transition-duration: 1s;
+}
+
+.reload-art .layer2 {
+  background: #c084fc;
+  /* tím nhạt */
+  transition-duration: 0.7s;
+}
+
+.reload-art .layer3 {
+  background: #9333ea;
+  /* tím đậm */
+  transition-duration: 0.5s;
+}
+
+.reload-art:hover .bg {
+  transform: rotate(12deg) scaleX(1);
+}
+
+/* Labels container */
+.reload-art .labels {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  /* Không cho text xuống dòng */
+  z-index: 2;
+}
+
+/* Text hiệu ứng */
+.reload-art .label {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.5s;
+}
+
+.reload-art .hover {
+  opacity: 0;
+}
+
+.reload-art:hover .default {
+  opacity: 0;
+}
+
+.reload-art:hover .hover {
+  opacity: 1;
 }
 /* <!-- Phần Projects--------------------------- --> */
 h3 {
