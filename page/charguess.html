@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/page/css/charguess.css">
+  </head>
+<body>
+  <div class="container">
+    <h1>Đoán nhân vật!</h1>
+
+    <div style="display: none;" id="quiz-area">
+      <div id="img-wrapper">
+        <img id="character-img" src="" alt="Hình nhân vật">
+        <div class="overlay"></div>
+      </div>
+
+      <div id="choices">
+        <button class="choice-btn" data-index="0"></button>
+        <button class="choice-btn" data-index="1"></button>
+        <button class="choice-btn" data-index="2"></button>
+        <button class="choice-btn" data-index="3"></button>
+      </div>
+    </div>
+
+    <div id="controls">
+      <button id="start-btn">Bắt đầu Quiz</button>
+      <div id="timer">Thời gian: 120s</div>
+      <div id="score">Điểm: 0</div>
+      <div id="lives">Lượt sai còn lại: 3</div>
+    </div>
+
+    <div id="result" class="hidden"></div>
+  </div>
+
+  <script src="./js/charguess.js"></script>
+  
+</body>
+</html>
