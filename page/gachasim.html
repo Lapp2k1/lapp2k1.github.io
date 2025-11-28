@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/gachasim.css">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Gacha demo — Trickcal</h1>
+      <div class="controls">
+        <button id="roll1">Roll 1</button>
+        <button id="roll10" class="secondary">Roll 10</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="panel">
+        <div class="roll-area">
+          <div>
+            <div class="info">Kết quả (mới nhất ở trên):</div>
+          </div>
+        </div>
+
+        <div id="results" class="results" aria-live="polite"></div>
+
+        <footer>
+          Mỗi roll độc lập. Tỉ lệ sẽ tự chuẩn hóa kể cả khi không cộng đúng 100.
+        </footer>
+      </section>
+
+      <aside class="side">
+        <strong>Phần cấu hình (sửa rate sau)</strong>
+   
+        <pre id="configPreview">// characters array shown here</pre>
+      </aside>
+    </main>
+  </div>
+
+  <script src="./js/gachasim.js"></script>
+</body>
+</html>
