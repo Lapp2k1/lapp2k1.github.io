@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>nghich</title>
+<style>
+  :root{
+    --bg:#f3f4f6;
+    --frame-bg:#fff;
+    --accent:#1f8ef1;
+  }
+  body{
+    margin:0;
+    font-family: "Segoe UI", Roboto, "Noto Sans", Arial, sans-serif;
+    background:var(--bg);
+    color:#111;
+    display:flex;
+    gap:24px;
+    padding:28px;
+    align-items:flex-start;
+    justify-content:center;
+    min-height:100vh;
+    box-sizing:border-box;
+  }
+
+  .panel{
+    width:360px;
+    max-width:40vw;
+    background:var(--frame-bg);
+    padding:16px;
+    border-radius:12px;
+    box-shadow:0 8px 30px rgba(2,6,23,0.08);
+  }
+
+  h2{ margin:6px 0 12px; font-size:18px; }
+
+  label{
+    display:block;
+    font-size:13px;
+    color:#333;
+    margin-bottom:8px;
+  }
+
+  input[type="file"]{
+    display:block;
+    margin-bottom:12px;
+  }
+
+  .row{
+    display:flex;
+    gap:8px;
+    align-items:center;
+    margin-bottom:12px;
+  }
+
+  .btn{
+    padding:8px 12px;
+    border-radius:10px;
+    background:var(--accent);
+    color:#fff;
+    border:0;
+    cursor:pointer;
+    font-weight:600;
+  }
+
+  .btn.ghost{
+    background:transparent;
+    color:var(--accent);
+    border:1px solid rgba(31,142,241,0.15);
+  }
+
+  .small{
+    font-size:13px;
+    padding:6px 8px;
+  }
+
+  /* STAGE */
+  .stage-wrap{
+    background:linear-gradient(180deg,#fff,#fafafa);
+    padding:18px;
+    border-radius:12px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:12px;
+    box-shadow:0 8px 30px rgba(2,6,23,0.06);
+  }
+
+  /* The frame that holds background-image (Image B) and the canvas on top */
+  #frame{
+    position:relative;
+    width:480px;         /* default size, will be set dynamically to image size */
+    height:320px;
+    background-repeat:no-repeat;
+    background-position:center;
+    background-size:100% 100%; /* stretch to exact frame size */
+    border-radius:8px;
+    overflow:visible;    /* allow horizontal overflow if any */
+    box-shadow: 0 6px 18px rgba(15,23,40,0.06);
+    border:1px solid rgba(0,0,0,0.04);
+  }
+
+  /* canvas sits exactly on top */
+  #topCanvas{
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    display:block;
+    cursor: crosshair;
+    /* no clipping; overflow handled by frame's overflow property */
+  }
+
+  .meta{
+    font-size:13px;
+    color:#444;
+  }
+
+  .controls-footer{
+    display:flex;
+    gap:8px;
+    align-items:center;
+    justify-content:space-between;
+    margin-top:8px;
+  }
+
+  .range{
+    width:150px;
+  }
+
+  /* responsive */
+  @media (max-width:860px){
+    body{ flex-direction:column; align-items:center; padding:16px; }
+    .panel{ width:100%; max-width:640px; }
+    #frame{ width:90vw; height:60vw; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="panel">
+    <h2>Controls</h2>
+
+    <label>Upload Bottom Image (Image B — nền)</label>
+    <input id="bottomInput" type="file" accept="image/*">
+
+    <label>Upload Top Image (Image A — lớp trên)</label>
+    <input id="topInput" type="file" accept="image/*">
+
+    <div class="row">
+      <button id="resetTop" class="btn small ghost">Reset Top Image</button>
+      <button id="clearTop" class="btn small ghost">Restore Top (undo erase)</button>
+    </div>
+
+    <div style="margin-top:8px;">
+      <label style="margin-bottom:6px; display:block">Eraser size: <span id="eraserVal">40</span> px</label>
+      <input id="eraserRange" class="range" type="range" min="10" max="120" value="40">
+    </div>
+
+    <div class="controls-footer" style="margin-top:12px;">
+      <div class="meta">Tip: kéo chuột / chạm để xoá vùng trên Image A</div>
+      <div>
+        <button id="downloadBtn" class="btn small">Tải kết quả</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="stage-wrap">
+    <h2 style="margin:0">Canvas Preview</h2>
+
+    <div id="frame" aria-label="Preview frame (Image B background)">
+      <!-- canvas will be created in JS or is pre-placed -->
+      <canvas id="topCanvas"></canvas>
+    </div>
+
+    <div style="display:flex; gap:12px; align-items:center;">
+      <div class="meta">Frame size: <span id="frameSize">—</span></div>
+      <div class="meta">Top image: <span id="topName">—</span></div>
+      <div class="meta">Bottom image: <span id="bottomName">—</span></div>
+    </div>
+  </div>
+
+<script>
+/* =========== Configuration: change ERASER_SIZE here ============ */
+let ERASER_SIZE = 40; // px, default. Also syncs with range control below
+/* ============================================================= */
+
+const bottomInput = document.getElementById('bottomInput');
+const topInput = document.getElementById('topInput');
+const frame = document.getElementById('frame');
+const topCanvas = document.getElementById('topCanvas');
+const ctx = topCanvas.getContext('2d', { willReadFrequently: true });
+
+const resetTopBtn = document.getElementById('resetTop');
+const clearTopBtn = document.getElementById('clearTop');
+const eraserRange = document.getElementById('eraserRange');
+const eraserVal = document.getElementById('eraserVal');
+const downloadBtn = document.getElementById('downloadBtn');
+const frameSizeEl = document.getElementById('frameSize');
+const topNameEl = document.getElementById('topName');
+const bottomNameEl = document.getElementById('bottomName');
+
+let bottomImg = null;   // Image object for B
+let topImg = null;      // Image object for A (original)
+let topBackup = null;   // ImageData backup for restore
+
+// device pixel ratio support for crisp canvas
+const DPR = window.devicePixelRatio || 1;
+
+function setFrameSize(w, h){
+  // set CSS size and canvas pixel size
+  frame.style.width = w + 'px';
+  frame.style.height = h + 'px';
+
+  topCanvas.width = Math.round(w * DPR);
+  topCanvas.height = Math.round(h * DPR);
+  topCanvas.style.width = w + 'px';
+  topCanvas.style.height = h + 'px';
+  ctx.setTransform(DPR,0,0,DPR,0,0); // scale drawing operations by DPR
+
+  frameSizeEl.textContent = `${w} x ${h}px`;
+}
+
+// draw top image onto canvas, scaled to frame size
+function drawTopImage(){
+  if(!topImg) {
+    ctx.clearRect(0,0,topCanvas.width/DPR, topCanvas.height/DPR);
+    return;
+  }
+  const w = topCanvas.width / DPR;
+  const h = topCanvas.height / DPR;
+
+  // Clear then draw stretched to fill exactly the frame
+  ctx.clearRect(0,0,w,h);
+  // Option: preserve aspect with cover/contain — here we stretch to exact size for perfect overlay
+  ctx.drawImage(topImg, 0, 0, w, h);
+
+  // backup pixel data for restore
+  try{
+    topBackup = ctx.getImageData(0,0,w,h);
+  }catch(e){
+    topBackup = null;
+  }
+}
+
+// set background image (bottom) and frame size using bottom image natural size (or top if bottom absent)
+function applyBottomImage(img){
+  if(!img) return;
+  // set frame dimensions to bottom's intrinsic size
+  const w = img.naturalWidth;
+  const h = img.naturalHeight;
+
+  // optional: cap to a reasonable max size for display (to avoid huge canvases)
+  const MAX_DIM = 1200;
+  let scale = 1;
+  if(Math.max(w,h) > MAX_DIM){
+    scale = MAX_DIM / Math.max(w,h);
+  }
+  const finalW = Math.round(w * scale);
+  const finalH = Math.round(h * scale);
+
+  // Set frame background to bottom image (stretched to frame size)
+  frame.style.backgroundImage = `url('${img.src}')`;
+  frame.style.backgroundSize = '100% 100%';
+  frame.style.backgroundRepeat = 'no-repeat';
+  frame.style.backgroundPosition = 'center center';
+
+  setFrameSize(finalW, finalH);
+  drawTopImage();
+}
+
+// If only top image is provided first, use top's size as frame default
+function applyTopImageSizingIfNoBottom(img){
+  if(bottomImg) return;
+  if(!img) return;
+  const w = img.naturalWidth;
+  const h = img.naturalHeight;
+
+  const MAX_DIM = 1200;
+  let scale = 1;
+  if(Math.max(w,h) > MAX_DIM){
+    scale = MAX_DIM / Math.max(w,h);
+  }
+  const finalW = Math.round(w * scale);
+  const finalH = Math.round(h * scale);
+
+  // clear background
+  frame.style.backgroundImage = 'none';
+  setFrameSize(finalW, finalH);
+  drawTopImage();
+}
+
+// handlers for uploads
+bottomInput.addEventListener('change', (e)=>{
+  const file = e.target.files && e.target.files[0];
+  if(!file) return;
+  const img = new Image();
+  img.onload = ()=>{
+    bottomImg = img;
+    bottomNameEl.textContent = file.name;
+    applyBottomImage(img);
+
+    // If top image exists, redraw and scale top to match new frame
+    if(topImg){
+      drawTopImage();
+    }
+  };
+  img.src = URL.createObjectURL(file);
+});
+
+topInput.addEventListener('change', (e)=>{
+  const file = e.target.files && e.target.files[0];
+  if(!file) return;
+  const img = new Image();
+  img.onload = ()=>{
+    topImg = img;
+    topNameEl.textContent = file.name;
+
+    // If bottom exists, we must draw top scaled to frame size. If not, use top's own size.
+    if(bottomImg){
+      drawTopImage();
+    }else{
+      applyTopImageSizingIfNoBottom(img);
+      drawTopImage();
+    }
+  };
+  img.src = URL.createObjectURL(file);
+});
+
+// Eraser controls
+eraserRange.addEventListener('input', (e)=>{
+  ERASER_SIZE = Number(e.target.value) || ERASER_SIZE;
+  eraserVal.textContent = ERASER_SIZE;
+});
+
+// Reset/restore top image
+resetTopBtn.addEventListener('click', ()=>{
+  // clear top image selection and canvas
+  topInput.value = "";
+  topImg = null;
+  topBackup = null;
+  topNameEl.textContent = '—';
+  ctx.clearRect(0,0,topCanvas.width/DPR, topCanvas.height/DPR);
+});
+
+// restore the top to original backup
+clearTopBtn.addEventListener('click', ()=>{
+  if(topBackup){
+    ctx.putImageData(topBackup, 0, 0);
+  }else{
+    drawTopImage();
+  }
+});
+
+// download combined result (render top canvas over bottom background)
+downloadBtn.addEventListener('click', ()=>{
+  const w = topCanvas.width / DPR;
+  const h = topCanvas.height / DPR;
+
+  // create temporary canvas to composite bottom + top
+  const tmp = document.createElement('canvas');
+  tmp.width = Math.round(w * DPR);
+  tmp.height = Math.round(h * DPR);
+  const tctx = tmp.getContext('2d');
+  tctx.setTransform(DPR,0,0,DPR,0,0);
+
+  // draw bottom (scaled to frame size)
+  if(bottomImg){
+    tctx.drawImage(bottomImg, 0, 0, w, h);
+  }else{
+    tctx.fillStyle = '#ffffff';
+    tctx.fillRect(0,0,w,h);
+  }
+  // draw top (with transparency)
+  tctx.drawImage(topCanvas, 0, 0, w, h);
+
+  tmp.toBlob((blob)=>{
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'composite.png';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  }, 'image/png');
+});
+
+/* ========== Erase logic: support mouse + touch, soft brush via radial gradient ========== */
+
+let isPointerDown = false;
+
+function getPointerPos(evt){
+  const rect = topCanvas.getBoundingClientRect();
+  let clientX, clientY;
+  if(evt.touches && evt.touches[0]){
+    clientX = evt.touches[0].clientX;
+    clientY = evt.touches[0].clientY;
+  }else{
+    clientX = evt.clientX;
+    clientY = evt.clientY;
+  }
+  const x = (clientX - rect.left);
+  const y = (clientY - rect.top);
+  // clamp
+  return { x: Math.max(0, Math.min(x, rect.width)), y: Math.max(0, Math.min(y, rect.height)) };
+}
+
+function eraseAt(x, y){
+  const w = topCanvas.width / DPR;
+  const h = topCanvas.height / DPR;
+
+  // create radial gradient brush on the destination-out composite
+  ctx.save();
+  ctx.globalCompositeOperation = 'destination-out';
+
+  // soft-edge with radial gradient
+  const r = ERASER_SIZE;
+  const grad = ctx.createRadialGradient(x, y, 0, x, y, r);
+  grad.addColorStop(0, 'rgba(0,0,0,1)');
+  grad.addColorStop(0.6, 'rgba(0,0,0,0.6)');
+  grad.addColorStop(1, 'rgba(0,0,0,0)');
+  ctx.fillStyle = grad;
+  ctx.beginPath();
+  ctx.arc(x, y, r, 0, Math.PI*2);
+  ctx.fill();
+
+  ctx.restore();
+}
+
+function onPointerDown(e){
+  e.preventDefault();
+  isPointerDown = true;
+  const p = getPointerPos(e);
+  eraseAt(p.x, p.y);
+}
+function onPointerMove(e){
+  if(!isPointerDown) return;
+  e.preventDefault();
+  const p = getPointerPos(e);
+  eraseAt(p.x, p.y);
+}
+function onPointerUp(e){
+  if(isPointerDown){
+    isPointerDown = false;
+    // update backup after stroke
+    try{
+      topBackup = ctx.getImageData(0,0,topCanvas.width/DPR, topCanvas.height/DPR);
+    }catch(ex){}
+  }
+}
+
+// attach mouse + touch events
+topCanvas.addEventListener('mousedown', onPointerDown);
+topCanvas.addEventListener('mousemove', onPointerMove);
+window.addEventListener('mouseup', onPointerUp);
+
+topCanvas.addEventListener('touchstart', onPointerDown, {passive:false});
+topCanvas.addEventListener('touchmove', onPointerMove, {passive:false});
+window.addEventListener('touchend', onPointerUp, {passive:false});
+
+/* initialize eraser UI value */
+eraserVal.textContent = ERASER_SIZE;
+eraserRange.value = ERASER_SIZE;
+
+/* default frame sizing */
+setFrameSize(480, 320);
+
+</script>
+</body>
+</html>

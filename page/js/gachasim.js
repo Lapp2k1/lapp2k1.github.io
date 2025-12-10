@@ -2,139 +2,1027 @@
  * PHẦN CẤU HÌNH NHÂN VẬT — BẠN CHỈ SỬA ĐOẠN NÀY
  ************************************************************************/
 const characters = [
-  { name: "hilde", image: "../../asset/trickcal/hilde.webp", rate: 1 },
-  { name: "vivi", image: "../../asset/trickcal/vivi.webp", rate: 1 },
-  { name: "amelia", image: "../../asset/trickcal/amelia.webp", rate: 1 },
-  { name: "asia", image: "../../asset/trickcal/asia.webp", rate: 1 },
-  { name: "aya", image: "../../asset/trickcal/aya.webp", rate: 1 },
-  { name: "barong", image: "../../asset/trickcal/barong.webp", rate: 1 },
-  { name: "benny", image: "../../asset/trickcal/benny.webp", rate: 1 },
-  { name: "caesar", image: "../../asset/trickcal/caesar.webp", rate: 1 },
-  { name: "canta", image: "../../asset/trickcal/canta.webp", rate: 1 },
   {
-    name: "diana-heyday",
-    image: "../../asset/trickcal/diana-heyday.webp",
-    rate: 1,
+    name: "amelia",
+    rarity: "ssr",
+    position: "back",
+    personality: "composed",
+    role: "support",
+    race: "elves",
+    image: "../../asset/trickcal/char/amelia.webp",
   },
-  { name: "ed", image: "../../asset/trickcal/ed.webp", rate: 1 },
-  { name: "elena", image: "../../asset/trickcal/elena.webp", rate: 1 },
-  { name: "espi", image: "../../asset/trickcal/espi.webp", rate: 1 },
-  { name: "fricle", image: "../../asset/trickcal/fricle.webp", rate: 1 },
-  { name: "gwynn", image: "../../asset/trickcal/gwynn.webp", rate: 1 },
-  { name: "jade", image: "../../asset/trickcal/jade.webp", rate: 1 },
   {
-    name: "kommy-swimsuit",
-    image: "../../asset/trickcal/kommy-swimsuit.webp",
-    rate: 1,
+    name: "asia",
+    rarity: "ssr",
+    position: "back",
+    personality: "composed",
+    role: "dps",
+    race: "elves",
+    image: "../../asset/trickcal/char/asia.webp",
   },
-  { name: "layze", image: "../../asset/trickcal/layze.webp", rate: 1 },
-  { name: "lethe", image: "../../asset/trickcal/lethe.webp", rate: 1 },
-  { name: "meluna", image: "../../asset/trickcal/meluna.webp", rate: 1 },
-  { name: "patula", image: "../../asset/trickcal/patula.webp", rate: 1 },
-  { name: "picora", image: "../../asset/trickcal/picora.webp", rate: 1 },
-  { name: "ricotta", image: "../../asset/trickcal/ricotta.webp", rate: 1 },
-  { name: "sylla", image: "../../asset/trickcal/sylla.webp", rate: 1 },
-  { name: "velvet", image: "../../asset/trickcal/velvet.webp", rate: 1 },
-  { name: "asana", image: "../../asset/trickcal/asana.webp", rate: 1 },
-  { name: "ashur", image: "../../asset/trickcal/ashur.webp", rate: 1 },
-  { name: "barie", image: "../../asset/trickcal/barie.webp", rate: 1 },
-  { name: "blanchet", image: "../../asset/trickcal/blanchet.webp", rate: 1 },
-  { name: "chopi", image: "../../asset/trickcal/chopi.webp", rate: 1 },
-  { name: "festa", image: "../../asset/trickcal/festa.webp", rate: 1 },
-  { name: "hilde", image: "../../asset/trickcal/hilde.webp", rate: 1 },
-  { name: "joan", image: "../../asset/trickcal/joan.webp", rate: 1 },
-  { name: "kidian", image: "../../asset/trickcal/kidian.webp", rate: 1 },
-  { name: "kommy", image: "../../asset/trickcal/kommy.webp", rate: 1 },
-  { name: "leone", image: "../../asset/trickcal/leone.webp", rate: 1 },
-  { name: "levi", image: "../../asset/trickcal/levi.webp", rate: 1 },
-  { name: "orr", image: "../../asset/trickcal/orr.webp", rate: 1 },
-  { name: "posher", image: "../../asset/trickcal/posher.webp", rate: 1 },
-  { name: "rim", image: "../../asset/trickcal/rim.webp", rate: 1 },
-  { name: "risty", image: "../../asset/trickcal/risty.webp", rate: 1 },
   {
-    name: "rohne-mayor",
-    image: "../../asset/trickcal/rohne-mayor.webp",
-    rate: 1,
+    name: "aya",
+    rarity: "ssr",
+    position: "middle",
+    personality: "composed",
+    role: "dps",
+    race: "witches",
+    image: "../../asset/trickcal/char/aya.webp",
   },
-  { name: "shasha", image: "../../asset/trickcal/shasha.webp", rate: 1 },
-  { name: "snorky", image: "../../asset/trickcal/snorky.webp", rate: 1 },
-  { name: "veroo", image: "../../asset/trickcal/veroo.webp", rate: 1 },
-  { name: "xion", image: "../../asset/trickcal/xion.webp", rate: 1 },
-  { name: "yomi", image: "../../asset/trickcal/yomi.webp", rate: 1 },
-  { name: "allet", image: "../../asset/trickcal/allet.webp", rate: 1 },
-  { name: "bigwood", image: "../../asset/trickcal/bigwood.webp", rate: 1 },
-  { name: "daya", image: "../../asset/trickcal/daya.webp", rate: 1 },
-  { name: "erpin", image: "../../asset/trickcal/erpin.webp", rate: 1 },
-  { name: "gabia", image: "../../asset/trickcal/gabia.webp", rate: 1 },
-  { name: "haley", image: "../../asset/trickcal/haley.webp", rate: 1 },
-  { name: "kathy", image: "../../asset/trickcal/kathy.webp", rate: 1 },
-  { name: "kyarot", image: "../../asset/trickcal/kyarot.webp", rate: 1 },
-  { name: "kyuri", image: "../../asset/trickcal/kyuri.webp", rate: 1 },
-  { name: "mago", image: "../../asset/trickcal/mago.webp", rate: 1 },
-  { name: "mayo-cool", image: "../../asset/trickcal/mayo-cool.webp", rate: 1 },
-  { name: "mute", image: "../../asset/trickcal/mute.webp", rate: 1 },
-  { name: "naia", image: "../../asset/trickcal/naia.webp", rate: 1 },
-  { name: "opal", image: "../../asset/trickcal/opal.webp", rate: 1 },
-  { name: "laika", image: "../../asset/trickcal/laika.webp", rate: 1 },
-  { name: "ran", image: "../../asset/trickcal/ran.webp", rate: 1 },
-  { name: "rohne", image: "../../asset/trickcal/rohne.webp", rate: 1 },
-  { name: "sari", image: "../../asset/trickcal/sari.webp", rate: 1 },
-  { name: "sherum", image: "../../asset/trickcal/sherum.webp", rate: 1 },
-  { name: "silphir", image: "../../asset/trickcal/silphir.webp", rate: 1 },
-  { name: "speaki", image: "../../asset/trickcal/speaki.webp", rate: 1 },
-  { name: "alice", image: "../../asset/trickcal/alice.webp", rate: 1 },
-  { name: "annette", image: "../../asset/trickcal/annette.webp", rate: 1 },
-  { name: "belita", image: "../../asset/trickcal/belita.webp", rate: 1 },
-  { name: "chloe", image: "../../asset/trickcal/chloe.webp", rate: 1 },
-  { name: "diana", image: "../../asset/trickcal/diana.webp", rate: 1 },
-  { name: "ifrit", image: "../../asset/trickcal/ifrit.webp", rate: 1 },
-  { name: "leets", image: "../../asset/trickcal/leets.webp", rate: 1 },
-  { name: "maestro", image: "../../asset/trickcal/maestro.webp", rate: 1 },
-  { name: "maison", image: "../../asset/trickcal/maison.webp", rate: 1 },
-  { name: "mayo", image: "../../asset/trickcal/mayo.webp", rate: 1 },
-  { name: "ner", image: "../../asset/trickcal/ner.webp", rate: 1 },
-  { name: "neti", image: "../../asset/trickcal/neti.webp", rate: 1 },
-  { name: "pira", image: "../../asset/trickcal/pira.webp", rate: 1 },
-  { name: "polan", image: "../../asset/trickcal/polan.webp", rate: 1 },
-  { name: "renewa", image: "../../asset/trickcal/renewa.webp", rate: 1 },
-  { name: "rim-chaos", image: "../../asset/trickcal/rim-chaos.webp", rate: 1 },
-  { name: "rollet", image: "../../asset/trickcal/rollet.webp", rate: 1 },
-  { name: "shady", image: "../../asset/trickcal/shady.webp", rate: 1 },
-  { name: "sist", image: "../../asset/trickcal/sist.webp", rate: 1 },
-  { name: "tig-hero", image: "../../asset/trickcal/tig-hero.webp", rate: 1 },
-  { name: "yumimi", image: "../../asset/trickcal/yumimi.webp", rate: 1 },
-  { name: "arco", image: "../../asset/trickcal/arco.webp", rate: 1 },
-  { name: "bana", image: "../../asset/trickcal/bana.webp", rate: 1 },
-  { name: "beni", image: "../../asset/trickcal/beni.webp", rate: 1 },
-  { name: "butter", image: "../../asset/trickcal/butter.webp", rate: 1 },
-  { name: "canna", image: "../../asset/trickcal/canna.webp", rate: 1 },
-  { name: "carren", image: "../../asset/trickcal/carren.webp", rate: 1 },
-  { name: "epica", image: "../../asset/trickcal/epica.webp", rate: 1 },
-  { name: "jubee", image: "../../asset/trickcal/jubee.webp", rate: 1 },
-  { name: "makasha", image: "../../asset/trickcal/makasha.webp", rate: 1 },
-  { name: "marie", image: "../../asset/trickcal/marie.webp", rate: 1 },
-  { name: "miro", image: "../../asset/trickcal/miro.webp", rate: 1 },
-  { name: "momo", image: "../../asset/trickcal/momo.webp", rate: 1 },
-  { name: "mynx", image: "../../asset/trickcal/mynx.webp", rate: 1 },
-  { name: "rude", image: "../../asset/trickcal/rude.webp", rate: 1 },
-  { name: "rufo", image: "../../asset/trickcal/rufo.webp", rate: 1 },
-  { name: "selinne", image: "../../asset/trickcal/selinne.webp", rate: 1 },
-  { name: "shoupan", image: "../../asset/trickcal/shoupan.webp", rate: 1 },
-  { name: "suro", image: "../../asset/trickcal/suro.webp", rate: 1 },
   {
-    name: "speaki-maid",
-    image: "../../asset/trickcal/speaki-maid.webp",
-    rate: 1,
+    name: "barong",
+    rarity: "ssr",
+    position: "front",
+    personality: "composed",
+    role: "dps",
+    race: "phantoms",
+    image: "../../asset/trickcal/char/barong.webp",
   },
-  { name: "taida", image: "../../asset/trickcal/taida.webp", rate: 1 },
-  { name: "tig", image: "../../asset/trickcal/tig.webp", rate: 1 },
-  { name: "ui", image: "../../asset/trickcal/ui.webp", rate: 1 },
-  { name: "vela", image: "../../asset/trickcal/vela.webp", rate: 1 },
-  { name: "uros", image: "../../asset/trickcal/uros.webp", rate: 1 },
+  {
+    name: "benny",
+    rarity: "ssr",
+    position: "back",
+    personality: "composed",
+    role: "dps",
+    race: "werebeasts",
+    image: "../../asset/trickcal/char/benny.webp",
+  },
+  {
+    name: "caesar",
+    rarity: "ssr",
+    position: "middle",
+    personality: "composed",
+    role: "support",
+    race: "elementals",
+    image: "../../asset/trickcal/char/caesar.webp",
+  },
+  {
+    name: "canta",
+    rarity: "sr",
+    position: "middle",
+    personality: "composed",
+    role: "dps",
+    race: "sprites",
+    image: "../../asset/trickcal/char/canta.webp",
+  },
+  {
+    name: "Diana (Heyday)",
+    rarity: "ssr",
+    position: "front",
+    personality: "composed",
+    role: "dps",
+    race: "werebeasts",
+    image: "../../asset/trickcal/char/diana-heyday.webp",
+  },
+  {
+    name: "ed",
+    rarity: "ssr",
+    position: "front",
+    personality: "composed",
+    role: "tank",
+    race: "elves",
+    image: "../../asset/trickcal/char/ed.webp",
+  },
+  {
+    name: "elena",
+    rarity: "ssr",
+    position: "middle",
+    personality: "composed",
+    role: "dps",
+    race: "elves",
+    image: "../../asset/trickcal/char/elena.webp",
+  },
+  {
+    name: "espi",
+    rarity: "sr",
+    position: "middle",
+    personality: "composed",
+    role: "support",
+    race: "phantoms",
+    image: "../../asset/trickcal/char/espi.webp",
+  },
+  {
+    name: "fricle",
+    rarity: "ssr",
+    position: "middle",
+    personality: "composed",
+    role: "dps",
+    race: "witches",
+    image: "../../asset/trickcal/char/fricle.webp",
+  },
+  {
+    name: "gwynn",
+    rarity: "ssr",
+    position: "front",
+    personality: "composed",
+    role: "support",
+    race: "werebeasts",
+    image: "../../asset/trickcal/char/gwynn.webp",
+  },
+  {
+    name: "jade",
+    rarity: "ssr",
+    position: "middle",
+    personality: "composed",
+    role: "dps",
+    race: "dragons",
+    image: "../../asset/trickcal/char/jade.webp",
+  },
+  {
+    name: "Kommy (Swimsuit)",
+    rarity: "ssr",
+    position: "middle",
+    personality: "composed",
+    role: "support",
+    race: "werebeasts",
+    image: "../../asset/trickcal/char/kommy-swimsuit.webp",
+  },
+  {
+    name: "layze",
+    rarity: "sr",
+    position: "back",
+    personality: "composed",
+    role: "dps",
+    race: "elves",
+    image: "../../asset/trickcal/char/layze.webp",
+  },
+  {
+    name: "lethe",
+    rarity: "sr",
+    position: "front",
+    personality: "composed",
+    role: "dps",
+    race: "phantoms",
+    image: "../../asset/trickcal/char/lethe.webp",
+  },
+  {
+    name: "meluna",
+    rarity: "sr",
+    position: "back",
+    personality: "composed",
+    role: "support",
+    race: "elementals",
+    image: "../../asset/trickcal/char/meluna.webp",
+  },
+  {
+    name: "patula",
+    rarity: "r",
+    position: "front",
+    personality: "composed",
+    role: "dps",
+    race: "sprites",
+    image: "../../asset/trickcal/char/patula.webp",
+  },
+  {
+    name: "picora",
+    rarity: "ssr",
+    position: "back",
+    personality: "composed",
+    role: "support",
+    race: "witches",
+    image: "../../asset/trickcal/char/picora.webp",
+  },
+  {
+    name: "ricotta",
+    rarity: "ssr",
+    position: "front",
+    personality: "composed",
+    role: "tank",
+    race: "sprites",
+    image: "../../asset/trickcal/char/ricotta.webp",
+  },
+  {
+    name: "sylla",
+    rarity: "ssr",
+    position: "back",
+    personality: "composed",
+    role: "dps",
+    race: "elementals",
+    image: "../../asset/trickcal/char/sylla.webp",
+  },
+  {
+    name: "velvet",
+    rarity: "ssr",
+    position: "front",
+    personality: "composed",
+    role: "tank",
+    race: "witches",
+    image: "../../asset/trickcal/char/velvet.webp",
+  },
+  {
+    name: "asana",
+    rarity: "ssr",
+    position: "front",
+    personality: "depressed",
+    role: "tank",
+    race: "witches",
+    image: "../../asset/trickcal/char/asana.webp",
+  },
+  {
+    name: "ashur",
+    rarity: "ssr",
+    position: "back",
+    personality: "depressed",
+    role: "dps",
+    race: "sprites",
+    image: "../../asset/trickcal/char/ashur.webp",
+  },
+  {
+    name: "barie",
+    rarity: "ssr",
+    position: "back",
+    personality: "depressed",
+    role: "support",
+    race: "witches",
+    image: "../../asset/trickcal/char/barie.webp",
+  },
+  {
+    name: "blanchet",
+    rarity: "ssr",
+    position: "middle",
+    personality: "depressed",
+    role: "dps",
+    race: "elementals",
+    image: "../../asset/trickcal/char/blanchet.webp",
+  },
+  {
+    name: "chopi",
+    rarity: "sr",
+    position: "middle",
+    personality: "depressed",
+    role: "dps",
+    race: "werebeasts",
+    image: "../../asset/trickcal/char/chopi.webp",
+  },
+  {
+    name: "festa",
+    rarity: "sr",
+    position: "front",
+    personality: "depressed",
+    role: "support",
+    race: "elves",
+    image: "../../asset/trickcal/char/festa.webp",
+  },
+  {
+    name: "hilde",
+    rarity: "ssr",
+    position: "middle",
+    personality: "depressed",
+    role: "support",
+    race: "elves",
+    image: "../../asset/trickcal/char/hilde.webp",
+  },
+  {
+    name: "joan",
+    rarity: "ssr",
+    position: "all-rows",
+    personality: "depressed",
+    role: "support",
+    race: "sprites",
+    image: "../../asset/trickcal/char/joan.webp",
+  },
+  {
+    name: "kidian",
+    rarity: "ssr",
+    position: "front",
+    personality: "depressed",
+    role: "dps",
+    race: "dragons",
+    image: "../../asset/trickcal/char/kidian.webp",
+  },
+  {
+    name: "kommy",
+    rarity: "ssr",
+    position: "front",
+    personality: "depressed",
+    role: "tank",
+    race: "werebeasts",
+    image: "../../asset/trickcal/char/kommy.webp",
+  },
+  {
+    name: "leone",
+    rarity: "ssr",
+    position: "front",
+    personality: "depressed",
+    role: "tank",
+    race: "werebeasts",
+    image: "../../asset/trickcal/char/leone.webp",
+  },
+  {
+    name: "levi",
+    rarity: "ssr",
+    position: "middle",
+    personality: "depressed",
+    role: "dps",
+    race: "witches",
+    image: "../../asset/trickcal/char/levi.webp",
+  },
+  {
+    name: "orr",
+    rarity: "ssr",
+    position: "back",
+    personality: "depressed",
+    role: "support",
+    race: "elves",
+    image: "../../asset/trickcal/char/orr.webp",
+  },
+  {
+    name: "posher",
+    rarity: "ssr",
+    position: "back",
+    personality: "depressed",
+    role: "support",
+    race: "witches",
+    image: "../../asset/trickcal/char/posher.webp",
+  },
+  {
+    name: "rim",
+    rarity: "ssr",
+    position: "front",
+    personality: "depressed",
+    role: "dps",
+    race: "phantoms",
+    image: "../../asset/trickcal/char/rim.webp",
+  },
+  {
+    name: "risty",
+    rarity: "ssr",
+    position: "back",
+    personality: "depressed",
+    role: "dps",
+    race: "elves",
+    image: "../../asset/trickcal/char/risty.webp",
+  },
+  {
+    name: "Rohne (Mayor)",
+    rarity: "ssr",
+    position: "middle",
+    personality: "depressed",
+    role: "dps",
+    race: "elves",
+    image: "../../asset/trickcal/char/rohne-mayor.webp",
+  },
+  {
+    name: "shasha",
+    rarity: "ssr",
+    position: "middle",
+    personality: "depressed",
+    role: "dps",
+    race: "sprites",
+    image: "../../asset/trickcal/char/shasha.webp",
+  },
+  {
+    name: "snorky",
+    rarity: "ssr",
+    position: "front",
+    personality: "depressed",
+    role: "tank",
+    race: "witches",
+    image: "../../asset/trickcal/char/snorky.webp",
+  },
+  {
+    name: "veroo",
+    rarity: "r",
+    position: "middle",
+    personality: "depressed",
+    role: "dps",
+    race: "phantoms",
+    image: "../../asset/trickcal/char/veroo.webp",
+  },
+  {
+    name: "xXionx",
+    rarity: "ssr",
+    position: "back",
+    personality: "depressed",
+    role: "dps",
+    race: "phantoms",
+    image: "../../asset/trickcal/char/xion.webp",
+  },
+  {
+    name: "yomi",
+    rarity: "ssr",
+    position: "middle",
+    personality: "depressed",
+    role: "support",
+    race: "mystic",
+    image: "../../asset/trickcal/char/yomi.webp",
+  },
+  {
+    name: "allet",
+    rarity: "sr",
+    position: "front",
+    personality: "innocence",
+    role: "tank",
+    race: "elves",
+    image: "../../asset/trickcal/char/allet.webp",
+  },
+  {
+    name: "bigwood",
+    rarity: "sr",
+    position: "front",
+    personality: "innocence",
+    role: "tank",
+    race: "elementals",
+    image: "../../asset/trickcal/char/bigwood.webp",
+  },
+  {
+    name: "daya",
+    rarity: "ssr",
+    position: "back",
+    personality: "innocence",
+    role: "dps",
+    race: "dragons",
+    image: "../../asset/trickcal/char/daya.webp",
+  },
+  {
+    name: "erpin",
+    rarity: "ssr",
+    position: "back",
+    personality: "innocence",
+    role: "dps",
+    race: "sprites",
+    image: "../../asset/trickcal/char/erpin.webp",
+  },
+  {
+    name: "gabia",
+    rarity: "ssr",
+    position: "middle",
+    personality: "innocence",
+    role: "support",
+    race: "elementals",
+    image: "../../asset/trickcal/char/gabia.webp",
+  },
+  {
+    name: "haley",
+    rarity: "ssr",
+    position: "middle",
+    personality: "innocence",
+    role: "dps",
+    race: "elves",
+    image: "../../asset/trickcal/char/haley.webp",
+  },
+  {
+    name: "kathy",
+    rarity: "ssr",
+    position: "back",
+    personality: "innocence",
+    role: "dps",
+    race: "elves",
+    image: "../../asset/trickcal/char/kathy.webp",
+  },
+  {
+    name: "kyarot",
+    rarity: "ssr",
+    position: "back",
+    personality: "innocence",
+    role: "support",
+    race: "sprites",
+    image: "../../asset/trickcal/char/kyarot.webp",
+  },
+  {
+    name: "kyuri",
+    rarity: "r",
+    position: "middle",
+    personality: "innocence",
+    role: "support",
+    race: "sprites",
+    image: "../../asset/trickcal/char/kyuri.webp",
+  },
+  {
+    name: "mago",
+    rarity: "ssr",
+    position: "middle",
+    personality: "innocence",
+    role: "support",
+    race: "werebeasts",
+    image: "../../asset/trickcal/char/mago.webp",
+  },
+  {
+    name: "Mayo (Cool)",
+    rarity: "ssr",
+    position: "middle",
+    personality: "innocence",
+    role: "dps",
+    race: "sprites",
+    image: "../../asset/trickcal/char/mayo-cool.webp",
+  },
+  {
+    name: "mute",
+    rarity: "ssr",
+    position: "back",
+    personality: "innocence",
+    role: "support",
+    race: "elementals",
+    image: "../../asset/trickcal/char/mute.webp",
+  },
+  {
+    name: "naia",
+    rarity: "ssr",
+    position: "middle",
+    personality: "innocence",
+    role: "support",
+    race: "elementals",
+    image: "../../asset/trickcal/char/naia.webp",
+  },
+  {
+    name: "opal",
+    rarity: "ssr",
+    position: "middle",
+    personality: "innocence",
+    role: "support",
+    race: "dragons",
+    image: "../../asset/trickcal/char/opal.webp",
+  },
+  {
+    name: "raika",
+    rarity: "ssr",
+    position: "front",
+    personality: "innocence",
+    role: "dps",
+    race: "elementals",
+    image: "../../asset/trickcal/char/laika.webp",
+  },
+  {
+    name: "ran",
+    rarity: "ssr",
+    position: "back",
+    personality: "innocence",
+    role: "dps",
+    race: "werebeasts",
+    image: "../../asset/trickcal/char/ran.webp",
+  },
+  {
+    name: "rohne",
+    rarity: "sr",
+    position: "front",
+    personality: "innocence",
+    role: "tank",
+    race: "elves",
+    image: "../../asset/trickcal/char/rohne.webp",
+  },
+  {
+    name: "sari",
+    rarity: "sr",
+    position: "middle",
+    personality: "innocence",
+    role: "dps",
+    race: "phantoms",
+    image: "../../asset/trickcal/char/sari.webp",
+  },
+  {
+    name: "sherum",
+    rarity: "ssr",
+    position: "front",
+    personality: "innocence",
+    role: "tank",
+    race: "witches",
+    image: "../../asset/trickcal/char/sherum.webp",
+  },
+  {
+    name: "silphir",
+    rarity: "ssr",
+    position: "middle",
+    personality: "innocence",
+    role: "dps",
+    race: "dragons",
+    image: "../../asset/trickcal/char/silphir.webp",
+  },
+  {
+    name: "speaki",
+    rarity: "ssr",
+    position: "back",
+    personality: "innocence",
+    role: "support",
+    race: "phantoms",
+    image: "../../asset/trickcal/char/speaki.webp",
+  },
+  {
+    name: "vivi",
+    rarity: "ssr",
+    position: "front",
+    personality: "innocence",
+    role: "tank",
+    race: "dragons",
+    image: "../../asset/trickcal/char/vivi.webp",
+  },
+  {
+    name: "alice",
+    rarity: "ssr",
+    position: "middle",
+    personality: "madness",
+    role: "dps",
+    race: "phantoms",
+    image: "../../asset/trickcal/char/alice.webp",
+  },
+  {
+    name: "annette",
+    rarity: "ssr",
+    position: "middle",
+    personality: "madness",
+    role: "support",
+    race: "dragons",
+    image: "../../asset/trickcal/char/annette.webp",
+  },
+  {
+    name: "belita",
+    rarity: "ssr",
+    position: "back",
+    personality: "madness",
+    role: "dps",
+    race: "witches",
+    image: "../../asset/trickcal/char/belita.webp",
+  },
+  {
+    name: "chloe",
+    rarity: "ssr",
+    position: "front",
+    personality: "madness",
+    role: "tank",
+    race: "sprites",
+    image: "../../asset/trickcal/char/chloe.webp",
+  },
+  {
+    name: "diana",
+    rarity: "ssr",
+    position: "middle",
+    personality: "madness",
+    role: "support",
+    race: "werebeasts",
+    image: "../../asset/trickcal/char/diana.webp",
+  },
+  {
+    name: "heidi",
+    rarity: "ssr",
+    position: "back",
+    personality: "madness",
+    role: "dps",
+    race: "elves",
+    image: "../../asset/trickcal/char/heidi.webp",
+  },
+  {
+    name: "ifrit",
+    rarity: "ssr",
+    position: "front",
+    personality: "madness",
+    role: "dps",
+    race: "elementals",
+    image: "../../asset/trickcal/char/ifrit.webp",
+  },
+  {
+    name: "leets",
+    rarity: "ssr",
+    position: "front",
+    personality: "madness",
+    role: "dps",
+    race: "dragons",
+    image: "../../asset/trickcal/char/leets.webp",
+  },
+  {
+    name: "maestromk2",
+    rarity: "sr",
+    position: "front",
+    personality: "madness",
+    role: "tank",
+    race: "elves",
+    image: "../../asset/trickcal/char/maestro.webp",
+  },
+  {
+    name: "maison",
+    rarity: "r",
+    position: "back",
+    personality: "madness",
+    role: "dps",
+    race: "phantoms",
+    image: "../../asset/trickcal/char/maison.webp",
+  },
+  {
+    name: "mayo",
+    rarity: "ssr",
+    position: "back",
+    personality: "madness",
+    role: "dps",
+    race: "sprites",
+    image: "../../asset/trickcal/char/mayo.webp",
+  },
+  {
+    name: "ner",
+    rarity: "ssr",
+    position: "front",
+    personality: "madness",
+    role: "support",
+    race: "sprites",
+    image: "../../asset/trickcal/char/ner.webp",
+  },
+  {
+    name: "neti",
+    rarity: "ssr",
+    position: "front",
+    personality: "madness",
+    role: "tank",
+    race: "dragons",
+    image: "../../asset/trickcal/char/neti.webp",
+  },
+  {
+    name: "pira",
+    rarity: "ssr",
+    position: "back",
+    personality: "madness",
+    role: "support",
+    race: "dragons",
+    image: "../../asset/trickcal/char/pira.webp",
+  },
+  {
+    name: "polan",
+    rarity: "ssr",
+    position: "back",
+    personality: "madness",
+    role: "support",
+    race: "sprites",
+    image: "../../asset/trickcal/char/polan.webp",
+  },
+  {
+    name: "renewa",
+    rarity: "ssr",
+    position: "middle",
+    personality: "madness",
+    role: "dps",
+    race: "elves",
+    image: "../../asset/trickcal/char/renewa.webp",
+  },
+  {
+    name: "Rim (Chaos)",
+    rarity: "ssr",
+    position: "back",
+    personality: "madness",
+    role: "dps",
+    race: "phantoms",
+    image: "../../asset/trickcal/char/rim-chaos.webp",
+  },
+  {
+    name: "rollet",
+    rarity: "ssr",
+    position: "back",
+    personality: "madness",
+    role: "dps",
+    race: "witches",
+    image: "../../asset/trickcal/char/rollet.webp",
+  },
+  {
+    name: "shaydi",
+    rarity: "ssr",
+    position: "front",
+    personality: "madness",
+    role: "dps",
+    race: "phantoms",
+    image: "../../asset/trickcal/char/shady.webp",
+  },
+  {
+    name: "sist",
+    rarity: "ssr",
+    position: "middle",
+    personality: "madness",
+    role: "dps",
+    race: "dragons",
+    image: "../../asset/trickcal/char/sist.webp",
+  },
+  {
+    name: "Tig (Hero)",
+    rarity: "ssr",
+    position: "all-rows",
+    personality: "madness",
+    role: "dps",
+    race: "werebeasts",
+    image: "../../asset/trickcal/char/tig-hero.webp",
+  },
+  {
+    name: "yumimi",
+    rarity: "r",
+    position: "back",
+    personality: "madness",
+    role: "dps",
+    race: "werebeasts",
+    image: "../../asset/trickcal/char/yumimi.webp",
+  },
+  {
+    name: "arco",
+    rarity: "ssr",
+    position: "middle",
+    personality: "vivacious",
+    role: "dps",
+    race: "elementals",
+    image: "../../asset/trickcal/char/arco.webp",
+  },
+  {
+    name: "bana",
+    rarity: "sr",
+    position: "back",
+    personality: "vivacious",
+    role: "support",
+    race: "werebeasts",
+    image: "../../asset/trickcal/char/bana.webp",
+  },
+  {
+    name: "beni",
+    rarity: "ssr",
+    position: "front",
+    personality: "vivacious",
+    role: "dps",
+    race: "werebeasts",
+    image: "../../asset/trickcal/char/beni.webp",
+  },
+  {
+    name: "butter",
+    rarity: "ssr",
+    position: "back",
+    personality: "vivacious",
+    role: "dps",
+    race: "werebeasts",
+    image: "../../asset/trickcal/char/butter.webp",
+  },
+  {
+    name: "canna",
+    rarity: "ssr",
+    position: "back",
+    personality: "vivacious",
+    role: "dps",
+    race: "elves",
+    image: "../../asset/trickcal/char/canna.webp",
+  },
+  {
+    name: "carren",
+    rarity: "r",
+    position: "back",
+    personality: "vivacious",
+    role: "support",
+    race: "sprites",
+    image: "../../asset/trickcal/char/carren.webp",
+  },
+  {
+    name: "epica",
+    rarity: "ssr",
+    position: "middle",
+    personality: "vivacious",
+    role: "dps",
+    race: "werebeasts",
+    image: "../../asset/trickcal/char/epica.webp",
+  },
+  {
+    name: "jubee",
+    rarity: "sr",
+    position: "middle",
+    personality: "vivacious",
+    role: "dps",
+    race: "elementals",
+    image: "../../asset/trickcal/char/jubee.webp",
+  },
+  {
+    name: "makasha",
+    rarity: "ssr",
+    position: "middle",
+    personality: "vivacious",
+    role: "support",
+    race: "witches",
+    image: "../../asset/trickcal/char/makasha.webp",
+  },
+  {
+    name: "marie",
+    rarity: "sr",
+    position: "middle",
+    personality: "vivacious",
+    role: "dps",
+    race: "sprites",
+    image: "../../asset/trickcal/char/marie.webp",
+  },
+  {
+    name: "miro",
+    rarity: "ssr",
+    position: "front",
+    personality: "vivacious",
+    role: "tank",
+    race: "elementals",
+    image: "../../asset/trickcal/char/miro.webp",
+  },
+  {
+    name: "momo",
+    rarity: "ssr",
+    position: "back",
+    personality: "vivacious",
+    role: "dps",
+    race: "werebeasts",
+    image: "../../asset/trickcal/char/momo.webp",
+  },
+  {
+    name: "mynx",
+    rarity: "r",
+    position: "front",
+    personality: "vivacious",
+    role: "dps",
+    race: "werebeasts",
+    image: "../../asset/trickcal/char/mynx.webp",
+  },
+  {
+    name: "rudd",
+    rarity: "ssr",
+    position: "front",
+    personality: "vivacious",
+    role: "tank",
+    race: "dragons",
+    image: "../../asset/trickcal/char/rude.webp",
+  },
+  {
+    name: "rufo",
+    rarity: "ssr",
+    position: "middle",
+    personality: "vivacious",
+    role: "dps",
+    race: "werebeasts",
+    image: "../../asset/trickcal/char/rufo.webp",
+  },
+  {
+    name: "selline",
+    rarity: "ssr",
+    position: "front",
+    personality: "vivacious",
+    role: "tank",
+    race: "phantoms",
+    image: "../../asset/trickcal/char/selinne.webp",
+  },
+  {
+    name: "shoupan",
+    rarity: "ssr",
+    position: "back",
+    personality: "vivacious",
+    role: "support",
+    race: "sprites",
+    image: "../../asset/trickcal/char/shoupan.webp",
+  },
+  {
+    name: "shuro",
+    rarity: "ssr",
+    position: "front",
+    personality: "vivacious",
+    role: "support",
+    race: "werebeasts",
+    image: "../../asset/trickcal/char/suro.webp",
+  },
+  {
+    name: "Speaki (Maid)",
+    rarity: "ssr",
+    position: "back",
+    personality: "vivacious",
+    role: "dps",
+    race: "phantoms",
+    image: "../../asset/trickcal/char/speaki-maid.webp",
+  },
+  {
+    name: "taida",
+    rarity: "sr",
+    position: "back",
+    personality: "vivacious",
+    role: "dps",
+    race: "elves",
+    image: "../../asset/trickcal/char/taida.webp",
+  },
+  {
+    name: "tig",
+    rarity: "ssr",
+    position: "front",
+    personality: "vivacious",
+    role: "dps",
+    race: "werebeasts",
+    image: "../../asset/trickcal/char/tig.webp",
+  },
+  {
+    name: "ui",
+    rarity: "ssr",
+    position: "middle",
+    personality: "vivacious",
+    role: "support",
+    race: "elementals",
+    image: "../../asset/trickcal/char/ui.webp",
+  },
+  {
+    name: "vela",
+    rarity: "ssr",
+    position: "front",
+    personality: "vivacious",
+    role: "tank",
+    race: "phantoms",
+    image: "../../asset/trickcal/char/vela.webp",
+  },
+  {
+    name: "uros",
+    rarity: "ssr",
+    position: "back",
+    personality: "resonance",
+    role: "support",
+    race: "werebeasts",
+    image: "../../asset/trickcal/char/uros.webp",
+  },
 ];
 
 /************************************************************************
- * CODE LOGIC - KHÔNG CẦN ĐỤNG TỚI
+ * CODE LOGIC (thay thế toàn bộ gachasim.js, giữ nguyên mảng characters)
  ************************************************************************/
 
 const resultsEl = document.getElementById("results");
@@ -142,68 +1030,356 @@ const configPreviewEl = document.getElementById("configPreview");
 const roll1Btn = document.getElementById("roll1");
 const roll10Btn = document.getElementById("roll10");
 
+// Tỉ lệ rarity (dưới dạng phần trăm tổng)
+const RARITY_RATE = {
+  1: 0.76, // R  -> 76%
+  2: 0.21, // SR -> 21%
+  3: 0.03, // SSR-> 3%
+};
+
+// Hiển thị preview config
 function refreshConfigPreview() {
-  configPreviewEl.textContent = JSON.stringify(characters, null, 2);
+  // show clean JSON (không bọc circular)
+  try {
+    configPreviewEl.textContent = JSON.stringify(characters, null, 2);
+  } catch (e) {
+    configPreviewEl.textContent = "// cannot stringify characters";
+    console.error("refreshConfigPreview:", e);
+  }
 }
 refreshConfigPreview();
+// Populate SSR list into rateup select
+const rateupSelect = document.getElementById("rateupSelect");
+function refreshRateupSelect(characters) {
+  const sel = document.getElementById("rateupSelect");
+  if (!sel) return;
 
-// Chuẩn hóa tỉ lệ thành weight tổng = 1
-function buildWeightedList(chars) {
-  const list = chars.map((c) => ({ ...c, rate: Number(c.rate) || 0 }));
-  const total = list.reduce((s, c) => s + Math.max(0, c.rate), 0);
-  if (total <= 0) {
-    const n = list.length || 1;
-    return list.map((c) => ({ ...c, weight: 1 / n }));
-  }
-  return list.map((c) => ({ ...c, weight: c.rate / total }));
+  // lọc SSR + sort A–Z
+  const ssrs = characters
+    .filter((c) => (c.rarity || "").toLowerCase() === "ssr")
+    .sort((a, b) => a.name.localeCompare(b.name));
+
+  sel.innerHTML = `
+    <option value="">(Không chọn)</option>
+    ${ssrs.map((c) => `<option value="${c.name}">${c.name}</option>`).join("")}
+  `;
 }
 
+function fillSSRList() {
+  const ssrList = characters.filter((c) => c.rarity === "ssr");
+  ssrList.forEach((c) => {
+    const op = document.createElement("option");
+    op.value = c.name;
+    op.textContent = c.name;
+    rateupSelect.appendChild(op);
+  });
+  refreshRateupSelect(characters);
+}
+
+fillSSRList();
+/**
+ * Chuẩn hóa trường rarity cho từng character:
+ * - chấp nhận c.rarity = "ssr"|"sr"|"r"  (string)
+ * - hoặc c.star = 1|2|3 (number)
+ * Sau bước này mỗi character có property .__star (1|2|3)
+ */
+function normalizeRarity(chars) {
+  chars.forEach((c) => {
+    let star = null;
+    if (c.star && (c.star === 1 || c.star === 2 || c.star === 3)) {
+      star = c.star;
+    } else if (c.rarity && typeof c.rarity === "string") {
+      const r = c.rarity.toLowerCase().trim();
+      if (r === "ssr") star = 3;
+      else if (r === "sr") star = 2;
+      else if (r === "r") star = 1;
+    } else if (c.rarity && typeof c.rarity === "number") {
+      // defensive
+      if (c.rarity === 1 || c.rarity === 2 || c.rarity === 3) star = c.rarity;
+    }
+    c.__star = star || 1; // default về 1 (R) nếu thiếu
+  });
+}
+
+/**
+ * Build weighted list: set c.weight for each character based on rarity groups.
+ * - Các nhân vật cùng __star sẽ chia đều tỷ lệ RARITY_RATE[star].
+ * - Trả về mảng các đối tượng (chính phần tử trong characters) chứa .weight
+ */
+function buildWeightedList(chars) {
+  // tỷ lệ chuẩn theo rarity (fractions)
+  const RARITY_TOTAL = { r: 0.76, sr: 0.21, ssr: 0.03 };
+  const RATEUP_VALUE = 0.008; // 0.8% as fraction
+
+  // normalize rarity field and group
+  const groups = { r: [], sr: [], ssr: [] };
+  chars.forEach((c) => {
+    const r = (c.rarity || "").toString().toLowerCase().trim();
+    if (r === "ssr") groups.ssr.push(c);
+    else if (r === "sr") groups.sr.push(c);
+    else groups.r.push(c); // default to r if missing/unknown
+  });
+
+  // copy rates object we will fill (fraction values)
+  const temp = chars.map((c) => ({ ...c, rate: 0 }));
+
+  // 1) assign base rates for R and SR (divide equally inside group)
+  if (groups.r.length > 0) {
+    const each = RARITY_TOTAL.r / groups.r.length;
+    groups.r.forEach((c) => {
+      const idx = temp.findIndex((x) => x.name === c.name);
+      if (idx >= 0) temp[idx].rate = each;
+    });
+  }
+  if (groups.sr.length > 0) {
+    const each = RARITY_TOTAL.sr / groups.sr.length;
+    groups.sr.forEach((c) => {
+      const idx = temp.findIndex((x) => x.name === c.name);
+      if (idx >= 0) temp[idx].rate = each;
+    });
+  }
+
+  // 2) assign SSR rates, with optional rate-up
+  const rateupName = document.getElementById("rateupSelect")?.value || "";
+  const totalSSR = RARITY_TOTAL.ssr; // 0.03
+  if (groups.ssr.length === 0) {
+    // nothing to do
+  } else {
+    // find target if matches an SSR name
+    const targetIdxInChars = temp.findIndex((x) => x.name === rateupName);
+    const hasValidTarget =
+      targetIdxInChars >= 0 && groups.ssr.some((s) => s.name === rateupName);
+
+    if (!hasValidTarget) {
+      // no rateup chosen or invalid -> distribute equally
+      const each = totalSSR / groups.ssr.length;
+      groups.ssr.forEach((c) => {
+        const idx = temp.findIndex((x) => x.name === c.name);
+        if (idx >= 0) temp[idx].rate = each;
+      });
+    } else {
+      // rateup chosen and valid
+      const targetName = rateupName;
+      // clamp requested RATEUP_VALUE to not exceed totalSSR
+      const assignedToTarget = Math.min(RATEUP_VALUE, totalSSR);
+      const remainder = Math.max(totalSSR - assignedToTarget, 0);
+      const others = groups.ssr.filter((s) => s.name !== targetName);
+      const shareForOthers = others.length > 0 ? remainder / others.length : 0;
+
+      groups.ssr.forEach((c) => {
+        const idx = temp.findIndex((x) => x.name === c.name);
+        if (idx < 0) return;
+        if (c.name === targetName) temp[idx].rate = assignedToTarget;
+        else temp[idx].rate = shareForOthers;
+      });
+    }
+  }
+
+  // 3) Now temp contains per-character fractional rates summing to ~1 (maybe small float errors)
+  // Ensure non-negative and then normalize to exact sum=1 (defensive)
+  let total = temp.reduce((s, x) => s + Math.max(0, x.rate || 0), 0);
+  if (total <= 0) {
+    // fallback uniformly
+    const n = temp.length || 1;
+    temp.forEach((x) => (x.weight = 1 / n));
+    return temp.map((x) => ({ ...x }));
+  } else {
+    temp.forEach((x) => (x.weight = Math.max(0, x.rate || 0) / total));
+    // update original characters' rate/weight (so preview shows fractions before normalizing maybe)
+    temp.forEach((t) => {
+      const orig = chars.find((c) => c.name === t.name);
+      if (orig) {
+        orig.rate = t.rate;
+        orig.weight = t.weight;
+      }
+    });
+    // return shallow copy array for picking
+    return temp.map((x) => ({ ...x }));
+  }
+}
+
+/**
+ * pickOne: chọn theo weight (giả sử tổng weight = 1, nhưng defensive nếu không)
+ */
 function pickOne(weighted) {
-  let r = Math.random();
+  const total = weighted.reduce((s, c) => s + (c.weight || 0), 0);
+  if (total <= 0) {
+    // fallback: random uniform
+    const idx = Math.floor(Math.random() * weighted.length);
+    return weighted[idx];
+  }
+  let r = Math.random() * total;
   let acc = 0;
   for (const c of weighted) {
-    acc += c.weight;
+    acc += c.weight || 0;
     if (r <= acc) return c;
   }
   return weighted[weighted.length - 1];
 }
 
+/**
+ * UI card creation
+ */
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
 function makeCard(item) {
   const div = document.createElement("div");
   div.className = "card";
 
+  // Background theo personality
+  const bg = document.createElement("div");
+  bg.className = "bg " + (item.personality || "");
+  div.appendChild(bg);
+
+  // Ảnh nhân vật
   const img = document.createElement("img");
   img.src = item.image;
   img.alt = item.name;
   img.onerror = () => {
     img.style.opacity = 0.35;
+    img.title = "image not found";
   };
 
+  // Tên
   const nm = document.createElement("div");
   nm.className = "name";
-  nm.textContent = item.name;
 
+  if (item.name === "xXionx") nm.textContent = "xXionx";
+  else nm.textContent = capitalize(item.name);
+
+  // Rate hiển thị rút gọn
   const rate = document.createElement("div");
   rate.className = "rate";
-  rate.textContent = Math.round((item.weight || 0) * 1000) / 10 + "%";
+
+  const raw = item.weight || 0;
+  let v = raw * 100;
+  let displayed;
+
+  if (v === 0) {
+    displayed = "0";
+  } else {
+    displayed = v.toString();
+    const m = displayed.match(/^(\d+)\.(0*)(\d+)/);
+    if (m) displayed = m[1] + "." + m[2] + m[3][0];
+  }
+
+  rate.textContent = displayed + "%";
+
+  // --- KHỐI ICON ---
+  const rarityWrap = document.createElement("div");
+  rarityWrap.className = "icons rarity-icons";
+
+  const infoWrap = document.createElement("div");
+  infoWrap.className = "icons info-icons";
+
+  // 1) RARITY → nhiều ngôi sao
+  if (item.rarity) {
+    const rarityMap = {
+      ssr: {
+        count: 3,
+        src: "../../asset/trickcal/icons/trickcal-ssr-star.png",
+      },
+      sr: { count: 2, src: "../../asset/trickcal/icons/trickcal-sr-star.png" },
+      r: { count: 1, src: "../../asset/trickcal/icons/trickcal-sr-star.png" },
+    };
+
+    const r = rarityMap[item.rarity.toLowerCase()];
+    if (r) {
+      for (let i = 0; i < r.count; i++) {
+        const star = document.createElement("img");
+        star.className = "icon star small";
+        star.src = r.src;
+
+        if (i > 0) star.classList.add("overlap");
+
+        rarityWrap.appendChild(star);
+      }
+    }
+  }
+
+  // 2) POSITION
+  if (item.position) {
+    const posImg = document.createElement("img");
+    posImg.className = "icon small";
+    posImg.src = `../../asset/trickcal/icons/trickcal-${item.position}.png`;
+    infoWrap.appendChild(posImg);
+  }
+
+  // 3) PERSONALITY
+  if (item.personality) {
+    const perImg = document.createElement("img");
+    perImg.className = "icon small";
+    perImg.src = `../../asset/trickcal/icons/trickcal-${item.personality}.png`;
+    infoWrap.appendChild(perImg);
+  }
+
+  // 4) ROLE
+  if (item.role) {
+    const roleImg = document.createElement("img");
+    roleImg.className = "icon small";
+    roleImg.src = `../../asset/trickcal/icons/trickcal-${item.role}.png`;
+    infoWrap.appendChild(roleImg);
+  }
+
+  // 5) RACE
+  if (item.race) {
+    const raceImg = document.createElement("img");
+    raceImg.className = "icon small";
+    raceImg.src = `../../asset/trickcal/icons/trickcal-${item.race}.webp`;
+    infoWrap.appendChild(raceImg);
+  }
 
   div.appendChild(img);
+  div.appendChild(rarityWrap); // hàng 1
+  div.appendChild(infoWrap); // hàng 2
   div.appendChild(nm);
   div.appendChild(rate);
+
   return div;
 }
 
+/**
+ * Thực hiện roll n lần
+ */
 function doRoll(n) {
   const weighted = buildWeightedList(characters);
+
   for (let i = 0; i < characters.length; i++) {
     characters[i].weight = weighted[i].weight;
   }
   refreshConfigPreview();
 
   const frag = document.createDocumentFragment();
+  const results = [];
 
   for (let i = 0; i < n; i++) {
     const picked = pickOne(weighted);
+    results.push(picked);
+  }
+
+  // BẢO KÊ: nếu roll 10 mà không có SR trở lên
+  if (n === 10) {
+    const hasGood = results.some(
+      (c) => c.rarity === "sr" || c.rarity === "ssr"
+    );
+
+    if (!hasGood) {
+      // Lọc danh sách SR+
+      const srPlus = characters.filter(
+        (c) => c.rarity === "sr" || c.rarity === "ssr"
+      );
+
+      // Random trong nhóm SR+
+      const forced = srPlus[Math.floor(Math.random() * srPlus.length)];
+
+      // Ép thay slot cuối
+      results[9] = forced;
+    }
+  }
+
+  // Render kết quả
+  for (const picked of results) {
     const card = makeCard(picked);
     resultsEl.prepend(card);
   }
@@ -213,5 +1389,26 @@ function doRoll(n) {
   }
 }
 
+/* Event bindings */
 roll1Btn.addEventListener("click", () => doRoll(1));
 roll10Btn.addEventListener("click", () => doRoll(10));
+
+/* Debug helper: log summary counts per rarity */
+function logSummary() {
+  const counts = { 1: 0, 2: 0, 3: 0 };
+  (characters || []).forEach((c) => {
+    const star =
+      c.__star ||
+      c.star ||
+      (typeof c.rarity === "string"
+        ? c.rarity.toLowerCase() === "ssr"
+          ? 3
+          : c.rarity.toLowerCase() === "sr"
+          ? 2
+          : 1
+        : 1);
+    counts[star] = (counts[star] || 0) + 1;
+  });
+  console.log("Rarity counts:", counts);
+}
+logSummary();
