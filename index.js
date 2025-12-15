@@ -1,74 +1,27 @@
-<<<<<<< HEAD
-// Lấy ảnh Lappland từ Safebooru, tối ưu
+// Lấy ảnh Lappland từ Danbooru API (ổn định, không scrape)
 async function loadLappland() {
-  const maxPid = 3612; // pid tối đa mới
-  const step = 42; // mỗi trang 42 ảnh
-  const pid = Math.floor(Math.random() * (maxPid / step + 1)) * step;
-
-  const targetUrl = `https://safebooru.org/index.php?page=post&s=list&tags=lappland_%28arknights%29&pid=${pid}`;
-  const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(
-    targetUrl
-  )}`;
+  const apiUrl =
+    "https://danbooru.donmai.us/posts.json?" +
+    new URLSearchParams({
+      tags: "lappland_(arknights) rating:safe",
+      limit: 20,
+      random: "true",
+    });
 
   try {
-    // fetch HTML qua proxy
-=======
-//script lấy ảnh từ safebooru
-async function loadLappland() {
-  try {
-    // chọn pid ngẫu nhiên theo cấp số cộng 42
-    const maxPid = 3444;
-    const pidList = [];
-    for (let i = 0; i <= maxPid; i += 42) pidList.push(i);
-    const pid = pidList[Math.floor(Math.random() * pidList.length)];
+    const res = await fetch(apiUrl);
+    if (!res.ok) throw new Error("Danbooru API error");
 
-    const url = `https://safebooru.org/index.php?page=post&s=list&tags=lappland_%28arknights%29&pid=${pid}`;
+    const posts = await res.json();
+    if (!posts.length) throw new Error("No posts found");
 
-    // dùng allorigins để bypass CORS
-    const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(
-      url
-    )}`;
->>>>>>> df88770fc76f7a8f67a09ff52f8e890cb31e374a
-    const res = await fetch(proxyUrl);
-    const data = await res.json();
+    // chọn 1 post ngẫu nhiên
+    const post = posts[Math.floor(Math.random() * posts.length)];
 
-    // parse HTML
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(data.contents, "text/html");
+    // ưu tiên file_url, fallback large_file_url
+    const src = post.file_url || post.large_file_url;
+    if (!src) throw new Error("No image url");
 
-<<<<<<< HEAD
-    // lấy danh sách thumbnail
-    const thumbs = doc.querySelectorAll("div.image-list span.thumb img");
-    if (!thumbs.length) throw new Error("No thumbnails found.");
-
-    // random 1 thumbnail
-    let src =
-      thumbs[Math.floor(Math.random() * thumbs.length)].getAttribute("src");
-
-    // chuyển thumbnail → ảnh full
-    src = src
-      .replace("/thumbnails/", "/images/")
-      .replace("thumbnail_", "")
-      .split("?")[0];
-
-    // gán vào DOM
-=======
-    // lấy danh sách ảnh
-    const thumbs = doc.querySelectorAll("div.image-list span.thumb img");
-    if (thumbs.length === 0) throw new Error("No images found");
-
-    // chọn 1 ảnh bất kỳ
-    const img = thumbs[Math.floor(Math.random() * thumbs.length)];
-    let src = img.getAttribute("src");
-
-    // convert thumbnail → full image
-    src = src
-      .replace("/thumbnails/", "/images/") // đổi folder
-      .replace("thumbnail_", "") // bỏ prefix
-      .split("?")[0]; // bỏ query string
-
-    // gán ảnh và nguồn
->>>>>>> df88770fc76f7a8f67a09ff52f8e890cb31e374a
     document.getElementById("lappland-img").src = src;
     document.getElementById("lappland-source").innerText = "Source: " + src;
   } catch (err) {
@@ -78,9 +31,4 @@ async function loadLappland() {
   }
 }
 
-<<<<<<< HEAD
-// chạy lần đầu
-=======
-// load ảnh lần đầu
->>>>>>> df88770fc76f7a8f67a09ff52f8e890cb31e374a
 loadLappland();

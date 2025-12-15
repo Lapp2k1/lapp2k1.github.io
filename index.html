@@ -15,6 +15,9 @@
       href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="music-player.css" />
+    <script src="music-player.js" defer></script>
+
     <script
       src="https://kit.fontawesome.com/7b988689d5.js"
       crossorigin="anonymous"
@@ -26,7 +29,7 @@
 
     <nav class="navbar">
       <div class="logo">
-        <p>{007}<br />NgocSora</p>
+        <p>Lappy❤️<br />NgocSora</p>
       </div>
       <div class="nav-section">
         <ul>
@@ -61,9 +64,24 @@
       <div class="self-introduce">
         <p>
           Hi 👋,<br />
-          My name is <br />
+          My name is
           <span class="color-text">NgocSora</span><br />
-          I build things for web
+          <del>I build things for web</del> (quitw) <br />
+          <p style="font-size: 15px">
+            ラップランドの名前は私の好きな言葉、</p
+          >
+          <p style="font-size: 15px"
+            >ラップランドの声は私の好きな音、</p
+          >
+          <p style="font-size: 15px"
+            >ラップランドの目は私の好きな鏡、</p
+          >
+          <p style="font-size: 15px"
+            >ラップランドの膝は私の好きな場所、</p
+          >
+          <p style="font-size: 15px"
+            >ラップランドの愛は私の好きな感情。
+          </p>
         </p>
       </div>
       <img
@@ -239,9 +257,7 @@
           <div class="description">
             <div class="description-text">
               <h3>Trickcal Silhouette</h3>
-              <p>
-              Idk nah
-              </p>
+              <p>Idk nah</p>
               <p>Tech stack : HTML , JavaScript, CSS</p>
             </div>
             <div class="project-link">
@@ -262,7 +278,7 @@
             </div>
           </div>
         </div>
-        <div class="project-container">
+        <div style="display: none" class="project-container">
           <img
             src="https://ktmt.vnmediacdn.com/stores/news_dataimages/nguyenthiluan/082019/21/06/in_article/0937_kinh-te-chia-se-se-thay-doi-su-van-hanh-kinh-te-toan-cau1485801623-15458215889321499501916-crop-1545821595170458249573.jpg"
             alt="project3"
@@ -295,7 +311,7 @@
             </div>
           </div>
         </div>
-        <div class="project-container">
+        <div style="display: none" class="project-container">
           <img
             src="https://hoanghamobile.com/tin-tuc/wp-content/uploads/2023/09/hinh-nen-may-tinh-4k-cong-nghe-41.jpg"
             alt="project4"
@@ -328,7 +344,7 @@
             </div>
           </div>
         </div>
-        <div class="project-container">
+        <div style="display: none" class="project-container">
           <img
             src="https://media.istockphoto.com/id/1212064060/vi/anh/l%C6%B0%E1%BB%9Bi-lu%E1%BB%93ng-d%E1%BB%AF-li%E1%BB%87u-abs-hologram.jpg?s=612x612&w=0&k=20&c=2IRs6J1TRCQUMzxuPfRK-lyuFKwSKswC8F-Bid526iw="
             alt="project5"
@@ -361,7 +377,7 @@
             </div>
           </div>
         </div>
-        <div class="project-container">
+        <div style="display: none" class="project-container">
           <img
             src="https://cafefcdn.com/thumb_w/640/203337114487263232/2022/8/14/photo1660459123746-16604591238561131450171.jpeg"
             alt="project6"
@@ -435,11 +451,68 @@
           Designed and built by
           <span class="color-text"
             >NgocSora <span class="noncolor-text">with</span> Love
-            <span class="noncolor-text">&</span> Coffee</span
+            <span class="noncolor-text">&</span> Calpis</span
           >
         </p>
       </div>
+      <button id="musicToggle" class="btn music-btn">
+        <span class="icon">🎵</span>
+        <span class="text">Music</span>
+      </button>
     </footer>
+    <div id="musicOverlay" class="mp-overlay hidden">
+      <div class="mp-player">
+        <!-- Header -->
+        <div class="mp-header">
+          <div class="mp-title">
+            <img id="mp-cover" src="" alt="" />
+            <div>
+              <div id="mp-song">Song name</div>
+              <div id="mp-artist">Artist</div>
+            </div>
+          </div>
+          <button id="mp-close">✕</button>
+        </div>
+
+        <!-- Progress -->
+        <div class="mp-progress">
+          <span id="mp-current">0:00</span>
+          <input type="range" id="mp-seek" min="0" value="0" />
+          <span id="mp-duration">0:00</span>
+        </div>
+
+        <!-- Controls -->
+        <div class="mp-controls">
+          <button id="mp-prev">⏮</button>
+          <button id="mp-play">▶</button>
+          <button id="mp-next">⏭</button>
+
+          <button id="mp-shuffle">🔀</button>
+          <button id="mp-loop">🔁</button>
+
+          <select id="mp-speed">
+            <option value="0.5">0.5x</option>
+            <option value="0.75">0.75x</option>
+            <option value="1" selected>1x</option>
+            <option value="1.25">1.25x</option>
+            <option value="1.5">1.5x</option>
+            <option value="2">2x</option>
+          </select>
+
+          <input
+            type="range"
+            id="mp-volume"
+            min="0"
+            max="1"
+            step="0.01"
+            value="1"
+          />
+        </div>
+
+        <!-- Playlist -->
+        <ul id="mp-playlist" class="mp-playlist"></ul>
+      </div>
+    </div>
   </body>
   <script src="/index.js"></script>
 </html>

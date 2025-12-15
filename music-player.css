@@ -1,0 +1,142 @@
+.mp-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity .3s;
+}
+
+.mp-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.mp-player {
+  width: 420px;
+  max-height: 90vh;
+  background: #111;
+  color: #eee;
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.mp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mp-title {
+  display: flex;
+  gap: 12px;
+}
+
+.mp-title img {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.mp-progress {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.mp-progress input {
+  flex: 1;
+}
+
+.mp-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.mp-controls button {
+  background: #222;
+  border: none;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.mp-playlist {
+  overflow-y: auto;
+  flex: 1;
+  border-top: 1px solid #333;
+  padding-top: 8px;
+}
+
+.mp-playlist li {
+  padding: 6px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.mp-playlist li.active {
+  background: #333;
+  color: #4fc3f7;
+}
+.music-btn {
+  width: 150px;
+  height: 50px;
+  border-radius: 6px;
+  border: none;
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  background: #040f16;
+  color: #f5f5f5;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: box-shadow 0.4s ease;
+}
+
+.music-btn:hover {
+  box-shadow: 0 0 20px #2e2e2e55;
+}
+
+/* ICON */
+.music-btn .icon {
+  position: absolute;
+  left: 16px;
+  font-size: 24px;
+  transition: all 0.4s ease;
+}
+
+/* TEXT */
+.music-btn .text {
+  margin-left: 52px;
+  transition: all 0.4s ease;
+  white-space: nowrap;
+}
+
+/* HOVER EFFECT */
+.music-btn:hover .text {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.music-btn:hover .icon {
+  left: 50%;
+  transform: translateX(-50%) scale(1.1);
+}
+
+/* CLICK */
+.music-btn:active .icon {
+  transform: translateX(-50%) scale(0.9);
+}
+
