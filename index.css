@@ -126,7 +126,7 @@ h1 + p {
   animation: flip 3s infinite;
 }
 /* Phần Tech Stack--------------------------- */
-.note{
+.note {
   display: flex;
   text-align: center;
   justify-content: center;
@@ -136,14 +136,15 @@ h1 + p {
   margin-top: 0px;
 }
 @media screen and (max-width: 735.2px) {
-
   #lappland {
-      margin-top: 100px;
-    }
+    margin-top: 100px;
+  }
 }
-.lappland +p {text-align: center;
+.lappland + p {
+  text-align: center;
   font-size: 25px;
-  padding-bottom: 40px;}
+  padding-bottom: 40px;
+}
 .lappland ul {
   display: flex;
   padding-bottom: 60px;
@@ -161,11 +162,11 @@ h1 + p {
 .lappland img {
   max-width: 100%;
   height: auto;
-  transition: transform 3s; 
+  transition: transform 3s;
 }
 
 .lappland li:hover img {
-  transform: rotate(1080deg); 
+  transform: rotate(1080deg);
 }
 .lappland ul li a img {
   width: 120px;
@@ -174,7 +175,6 @@ h1 + p {
 #lappland h1 {
   margin-bottom: -34px;
 }
-
 
 #lappland-container {
   text-align: center;
@@ -288,6 +288,296 @@ h1 + p {
 .reload-art:hover .hover {
   opacity: 1;
 }
+/* ===== OsuProfile ===== */
+
+#osu-section {
+  display: flex;
+  margin: 80px auto;
+  margin-top: 0px;
+  max-width: 1100px;
+  padding: 32px;
+  border-radius: 24px;
+  background: linear-gradient(
+    135deg,
+    rgba(80, 80, 255, 0.25),
+    rgba(20, 20, 40, 0.7)
+  );
+  backdrop-filter: blur(18px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+  transform: translateY(40px);
+  transition: 0.8s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#osu-section.show {
+  opacity: 1;
+  transform: none;
+}
+
+.osu-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+
+  perspective: 1000px;
+
+
+}
+
+@media(min-width: 768px) {
+  .osu-header {
+    flex-direction: row;
+    text-align: left;
+    align-items: center;
+  }
+}
+
+.osu-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  position: relative;
+  z-index: 1;
+  padding: 6px;
+ background: conic-gradient(from 0deg, #8000ff, #00fdee, #ff0080, #8000ff);
+  animation: rotate-gradient 4s linear infinite;
+  box-sizing: border-box;
+  transition: transform 0.5s, box-shadow 0.5s;
+}
+
+/* Glow động bằng :after */
+.osu-avatar::after {
+  content: '';
+  position: absolute;
+  top: -6px; left: -6px; right: -6px; bottom: -6px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, #8000ff, #00fdee, #ff0080, #8000ff);
+  z-index: -1;
+  filter: blur(15px);
+  animation: rotate-gradient 5s linear infinite;
+}
+
+/* Hover avatar: pop + shadow */
+.osu-avatar:hover {
+  transform: scale(1.15) rotateY(10deg);
+  box-shadow: 0 0 30px rgba(128, 0, 255, 0.7),
+              0 0 50px rgba(0, 253, 238, 0.6);
+}
+
+/* Gradient xoay */
+@keyframes rotate-gradient {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+.osu-user h2 {
+  font-size: 28px;
+  margin: 0;
+  color: #fff;
+}
+
+.osu-country {
+  display: flex;
+  gap: 8px;
+  opacity: 0.85;
+  align-items: center;
+  justify-content: center;
+}
+
+.osu-country img {
+  width: 22px;
+  height: auto;
+  border-radius: 4px;
+}
+
+.osu-stats {
+  margin-top: 32px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+  justify-items: center;
+}
+
+.stat {
+  padding: 16px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  transition: 0.3s;
+  cursor: default;
+  width: 100%;
+  text-align: center;
+}
+
+.stat:hover {
+  transform: translateY(-6px);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.stat span {
+  font-size: 13px;
+  opacity: 0.7;
+  display: block;
+}
+
+.stat b {
+  font-size: 20px;
+  color: #fff;
+}
+
+.osu-title {
+  margin: 40px 0 16px;
+  font-size: 22px;
+  color: #fff;
+  text-align: center;
+}
+
+.osu-scores {
+  display: grid;
+  gap: 16px;
+  width: 100%;
+}
+
+@media(min-width: 600px) {
+  .osu-scores {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+}
+
+.best-score {
+  position: relative;
+  padding: 16px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  transition: 0.3s;
+}
+
+.best-score:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-4px);
+}
+
+.best-score .score-cover {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  margin-right: 16px;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.best-score .score-info {
+  flex: 1;
+}
+
+.score-title {
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 4px;
+  color: #fff;
+}
+
+.score-diff {
+  font-size: 14px;
+  opacity: 0.8;
+  margin-bottom: 6px;
+  color: #ddd;
+}
+
+.score-meta span {
+  font-size: 12px;
+  opacity: 0.7;
+  margin-right: 8px;
+  color: #ccc;
+}
+.osu-scores {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.best-score {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  transition: 0.3s;
+}
+
+.best-score:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+/* Rank box */
+.best-score .score-rank {
+  width: 36px;
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+  margin-right: 12px;
+  color: #fff;
+}
+
+/* Beatmap cover */
+.best-score .score-cover {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  object-fit: cover;
+  margin-right: 12px;
+}
+
+/* Info */
+.best-score .score-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+}
+
+.score-title {
+  font-weight: bold;
+  font-size: 16px;
+  color: #fff;
+}
+
+.score-diff {
+  font-size: 14px;
+  opacity: 0.8;
+  color: #ccc;
+  margin-bottom: 4px;
+}
+
+.score-meta {
+  display: flex;
+  gap: 12px;
+}
+
+.score-meta span {
+  font-size: 12px;
+  color: #aaa;
+}
+/* Smooth entrance animation for section */
+@keyframes fadeInUp {
+  0% {opacity: 0; transform: translateY(40px);}
+  100% {opacity: 1; transform: translateY(0);}
+}
+#osu-section.show {
+  animation: fadeInUp 0.8s forwards;
+}
+
+
 /* <!-- Phần Projects--------------------------- --> */
 h3 {
   color: #cccccc;
@@ -379,7 +669,7 @@ h3 {
 .contact .contact-info {
   display: flex;
   gap: 30px;
-  padding-left: 600px;
+
   align-items: center;
 }
 .contact .contact-info p {
@@ -437,4 +727,86 @@ h3 {
 
 .caption p .noncolor-text {
   color: #a7a7a7;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  /* ===== Navbar ===== */
+  .navbar {
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .navbar .logo,
+  .navbar .nav-section,
+  .navbar .nav-icon {
+    width: 100%;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .navbar .nav-section ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  /* ===== Hero ===== */
+  .sectionhero {
+    flex-direction: column;
+    height: auto;
+    padding: 80px 20px;
+    gap: 40px;
+    text-align: center;
+  }
+
+  .sectionhero .self-introduce {
+    font-size: 32px;
+  }
+
+  .sectionhero img {
+    width: 200px;
+    height: auto;
+  }
+
+  /* ===== Projects ===== */
+  .projects-row {
+    gap: 24px;
+  }
+
+  .my-projects .project-container {
+    width: 90%;
+    height: auto;
+  }
+
+  .my-projects .project-container img {
+    width: 100%;
+    height: auto;
+  }
+
+  /* ===== Footer ===== */
+  .contact {
+    flex-direction: column;
+    gap: 20px;
+    margin: 40px 20px;
+  }
+
+  .contact .contact-info {
+    padding-left: 0;
+    justify-content: center;
+  }
+
+  .caption {
+    flex-direction: column;
+    gap: 20px;
+    margin: 40px 20px;
+    text-align: center;
+  }
+
+  .caption .nav-section ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
 }

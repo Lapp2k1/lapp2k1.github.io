@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lappy❤️</title>
+    <link rel="icon" type="image/svg+xml" href="/asset/Lappland/fav.svg" />
     <link rel="stylesheet" href="/index.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,6 +24,7 @@
       crossorigin="anonymous"
       defer
     ></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
   </head>
   <body>
     <!-- /* Phần nav bar -------------------------*/ -->
@@ -67,22 +69,13 @@
           My name is
           <span class="color-text">NgocSora</span><br />
           <del>I build things for web</del> (quitw) <br />
-          <p style="font-size: 15px">
-            ラップランドの名前は私の好きな言葉、</p
-          >
-          <p style="font-size: 15px"
-            >ラップランドの声は私の好きな音、</p
-          >
-          <p style="font-size: 15px"
-            >ラップランドの目は私の好きな鏡、</p
-          >
-          <p style="font-size: 15px"
-            >ラップランドの膝は私の好きな場所、</p
-          >
-          <p style="font-size: 15px"
-            >ラップランドの愛は私の好きな感情。
-          </p>
         </p>
+
+        <p style="font-size: 15px">ラップランドの名前は私の好きな言葉、</p>
+        <p style="font-size: 15px">ラップランドの声は私の好きな音、</p>
+        <p style="font-size: 15px">ラップランドの目は私の好きな鏡、</p>
+        <p style="font-size: 15px">ラップランドの膝は私の好きな場所、</p>
+        <p style="font-size: 15px">ラップランドの愛は私の好きな感情。</p>
       </div>
       <img
         src="https://avatars.githubusercontent.com/u/165108084?s=400&u=2a6dafdb07b2e08317fd3a3fa31913e836033095&v=4"
@@ -213,6 +206,39 @@
         </li>
       </ul>
     </section>
+    <!--Phần osu profile-->
+   <p style="font-size:30px; padding: 0px;">Osu Corner</p>
+<section id="osu-section" class="osu-glass">
+  
+  <div class="osu-header">
+    <img id="osu-avatar" class="osu-avatar" />
+    <div class="osu-user">
+      <h2 id="osu-username"></h2>
+      <div class="osu-country">
+        <img id="osu-flag" />
+        <span id="osu-country-name"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="osu-stats">
+    <div class="stat"><span>Global Rank</span><b>#</b><b id="stat-rank">0</b></div>
+    <div class="stat"><span>Country Rank</span><b>#</b><b id="stat-country-rank">0</b></div>
+    <div class="stat"><span>PP</span><b id="stat-pp">0</b></div>
+    <div class="stat"><span>Accuracy</span><b id="stat-acc">0</b><b>%</b></div>
+    <div class="stat"><span>Play Count</span><b id="stat-playcount">0</b></div>
+    <div class="stat"><span>Level</span><b id="stat-level">0</b></div>
+    <div class="stat"><span>Playtime</span><b id="stat-playtime">0h</b></div>
+    <div class="stat"><span>Joined</span><b id="stat-joindate">-</b></div>
+  </div>
+
+  <h3 class="osu-title">Best Performance</h3>
+  <div id="osu-best-scores" class="osu-scores"></div>
+</section>
+
+
+
+
     <!-- Phần Projects--------------------------- -->
     <section id="projects" class="my-projects">
       <div class="introduce-projects">
@@ -416,24 +442,26 @@
     <footer id="contact">
       <div class="contact">
         <div class="logo">
-          <p>{007}<br />NgocSora</p>
+          <p>拉拉140<br />NgocSora</p>
         </div>
         <div class="contact-info">
           <p>+91 12345 09876</p>
           <p>info@example.com</p>
-        </div>
-        <div class="nav-icon">
-          <ul>
-            <li>
-              <a href="#"><img src="/asset/Vector.png" alt="github" /></a>
-            </li>
-            <li>
-              <a href="#"><img src="/asset/Vector (1).png" alt="X" /></a>
-            </li>
-            <li>
-              <a href="#"><img src="/asset/Vector (2).png" alt="linkedin" /></a>
-            </li>
-          </ul>
+          <div class="nav-icon">
+            <ul>
+              <li>
+                <a href="#"><img src="/asset/Vector.png" alt="github" /></a>
+              </li>
+              <li>
+                <a href="#"><img src="/asset/Vector (1).png" alt="X" /></a>
+              </li>
+              <li>
+                <a href="#"
+                  ><img src="/asset/Vector (2).png" alt="linkedin"
+                /></a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
 
@@ -461,6 +489,8 @@
       </button>
     </footer>
     <div id="musicOverlay" class="mp-overlay hidden">
+      <div id="yt-player" class="yt-hidden"></div>
+
       <div class="mp-player">
         <!-- Header -->
         <div class="mp-header">
@@ -513,6 +543,7 @@
         <ul id="mp-playlist" class="mp-playlist"></ul>
       </div>
     </div>
+    <div id="mp-notice" class="mp-notice"></div>
   </body>
   <script src="/index.js"></script>
 </html>
