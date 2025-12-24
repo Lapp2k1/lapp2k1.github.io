@@ -324,11 +324,9 @@ h1 + p {
   text-align: center;
 
   perspective: 1000px;
-
-
 }
 
-@media(min-width: 768px) {
+@media (min-width: 768px) {
   .osu-header {
     flex-direction: row;
     text-align: left;
@@ -343,7 +341,7 @@ h1 + p {
   position: relative;
   z-index: 1;
   padding: 6px;
- background: conic-gradient(from 0deg, #8000ff, #00fdee, #ff0080, #8000ff);
+  background: conic-gradient(from 0deg, #8000ff, #00fdee, #ff0080, #8000ff);
   animation: rotate-gradient 4s linear infinite;
   box-sizing: border-box;
   transition: transform 0.5s, box-shadow 0.5s;
@@ -351,9 +349,12 @@ h1 + p {
 
 /* Glow động bằng :after */
 .osu-avatar::after {
-  content: '';
+  content: "";
   position: absolute;
-  top: -6px; left: -6px; right: -6px; bottom: -6px;
+  top: -6px;
+  left: -6px;
+  right: -6px;
+  bottom: -6px;
   border-radius: 50%;
   background: conic-gradient(from 0deg, #8000ff, #00fdee, #ff0080, #8000ff);
   z-index: -1;
@@ -364,16 +365,18 @@ h1 + p {
 /* Hover avatar: pop + shadow */
 .osu-avatar:hover {
   transform: scale(1.15) rotateY(10deg);
-  box-shadow: 0 0 30px rgba(128, 0, 255, 0.7),
-              0 0 50px rgba(0, 253, 238, 0.6);
+  box-shadow: 0 0 30px rgba(128, 0, 255, 0.7), 0 0 50px rgba(0, 253, 238, 0.6);
 }
 
 /* Gradient xoay */
 @keyframes rotate-gradient {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
-
 
 .osu-user h2 {
   font-size: 28px;
@@ -443,7 +446,7 @@ h1 + p {
   width: 100%;
 }
 
-@media(min-width: 600px) {
+@media (min-width: 600px) {
   .osu-scores {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   }
@@ -570,13 +573,19 @@ h1 + p {
 }
 /* Smooth entrance animation for section */
 @keyframes fadeInUp {
-  0% {opacity: 0; transform: translateY(40px);}
-  100% {opacity: 1; transform: translateY(0);}
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 #osu-section.show {
   animation: fadeInUp 0.8s forwards;
 }
-
+/*<!-- Phần Lappland chat----->*/
 
 /* <!-- Phần Projects--------------------------- --> */
 h3 {

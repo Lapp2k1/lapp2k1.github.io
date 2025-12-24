@@ -119,23 +119,24 @@ function onYouTubeIframeAPIReady() {
   ytPlayer = new YT.Player("yt-player", {
     height: "0",
     width: "0",
+    // THÊM DÒNG NÀY: Chuyển toàn bộ yêu cầu sang domain không cookie
+    host: "https://www.youtube-nocookie.com",
     playerVars: {
       controls: 0,
       disablekb: 1,
+      rel: 0, // Không hiển thị video liên quan sau khi kết thúc
+      showinfo: 0, // Ẩn thông tin video (tiêu đề, người đăng)
+      modestbranding: 1, // Ẩn logo YouTube
+      iv_load_policy: 3, // Ẩn các thẻ ghi chú (annotations) thường gây phiền nhiễu
     },
     events: {
       onReady: () => {
         ytReady = true;
-        logYT("YT READY");
-
+        logYT("YT READY (No-Cookie Mode)");
         if (pendingAction) {
-          logYT("RUN PENDING " + JSON.stringify(pendingAction));
-          if (pendingAction.type === "load") {
+          if (pendingAction.type === "load")
             ytPlayer.loadVideoById(pendingAction.id);
-          }
-          if (pendingAction.type === "play") {
-            ytPlayer.playVideo();
-          }
+          if (pendingAction.type === "play") ytPlayer.playVideo();
           pendingAction = null;
         }
       },
