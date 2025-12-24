@@ -585,8 +585,35 @@ h1 + p {
 #osu-section.show {
   animation: fadeInUp 0.8s forwards;
 }
-/*<!-- Phần Lappland chat----->*/
+/*<!-- Phần chat----->*/
+#comment-box {
+  max-width: 600px;
+  margin: 40px auto;
+}
 
+input, textarea {
+  width: 100%;
+  background: #222;
+  color: #eee;
+  border: 1px solid #333;
+  padding: 8px;
+  margin-bottom: 8px;
+}
+
+button {
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.comment {
+  border-bottom: 1px solid #333;
+  padding: 10px 0;
+}
+
+.time {
+  font-size: 12px;
+  opacity: 0.6;
+}
 /* <!-- Phần Projects--------------------------- --> */
 h3 {
   color: #cccccc;

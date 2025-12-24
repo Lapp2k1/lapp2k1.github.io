@@ -125,3 +125,130 @@ function formatTime(sec) {
   const m = Math.floor((sec % 3600) / 60);
   return `${h}h ${m}m`;
 }
+//chat
+const API = "https://lappysim.vulengocvip2015.workers.dev";
+
+// ===== USER INIT =====
+let uid = localStorage.getItem("uid");
+if (!uid) {
+  uid = crypto.randomUUID();
+  localStorage.setItem("uid", uid);
+}
+
+let name = localStorage.getItem("name") || "";
+document.getElementById("name").value = name;
+
+// ===== ADMIN FLAG =====
+const isAdmin = localStorage.getItem("isAdmin") === "1";
+
+// ===== SEND COMMENT =====
+async function send() {
+  const nameInput = document.getElementById("name");
+  const contentInput = document.getElementById("content");
+
+  const nameVal = nameInput.value.trim() || "Ẩn danh";
+  const contentVal = contentInput.value.trim();
+  if (!contentVal) return;
+
+  localStorage.setItem("name", nameVal);
+
+  const res = await fetch(API + "/comment", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      uid,
+      name: nameVal,
+      content: contentVal,
+    }),
+  });
+
+  const newComment = await res.json();
+
+  contentInput.value = "";
+
+  // 👇 ADD NGAY VÀO UI
+  renderOne(newComment);
+}
+function renderOne(c) {
+  const box = document.getElementById("comments");
+  const div = document.createElement("div");
+
+  div.className = "comment";
+  div.dataset.id = c.id; // ⭐ RẤT QUAN TRỌNG
+
+  let delBtn = "";
+  if (isAdmin || c.uid === uid) {
+    delBtn = `<button onclick="del('${c.id}')">Xóa</button>`;
+  }
+
+  div.innerHTML = `
+    <b>${escapeHtml(c.name)}</b>
+    <div class="time">${new Date(c.time).toLocaleString()}</div>
+    <div>${escapeHtml(c.content)}</div>
+    ${delBtn}
+  `;
+
+  box.appendChild(div);
+}
+
+
+// ===== LOAD COMMENTS =====
+async function load() {
+  const res = await fetch(API + "/comments");
+  const data = await res.json();
+
+  const box = document.getElementById("comments");
+
+  // ⚠️ Nếu backend trả rỗng trong khi UI đang có comment → bỏ qua
+  if (data.length === 0 && box.children.length > 0) {
+    return;
+  }
+
+  box.innerHTML = "";
+  data.forEach(renderOne);
+}
+
+// ===== DELETE COMMENT =====
+async function del(id) {
+  let headers = { "Content-Type": "application/json" };
+  let body = null;
+
+  if (isAdmin) {
+    headers["Authorization"] = "Bearer " + localStorage.getItem("adminToken");
+  } else {
+    body = JSON.stringify({ uid });
+  }
+
+  const res = await fetch(API + "/comment?id=" + id, {
+    method: "DELETE",
+    headers,
+    body,
+  });
+
+  if (!res.ok) return;
+
+  // ✅ XÓA TRỰC TIẾP TRÊN UI
+  const el = document.querySelector(`.comment[data-id="${id}"]`);
+  if (el) el.remove();
+
+  // ❌ ĐỪNG load() NGAY
+}
+
+
+// ===== UTILS =====
+function escapeHtml(text) {
+  return text.replace(
+    /[&<>"']/g,
+    (m) =>
+      ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;",
+      }[m])
+  );
+}
+
+// ===== INIT =====
+load();
