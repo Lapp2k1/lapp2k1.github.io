@@ -1,5 +1,13 @@
 const playlist = [
   {
+    type: "audio",
+    title: "Untitled world",
+    artist: "ReoNa",
+    src: "/asset/BGM/ReoNa - Untitled world『Arknights Anniversary Theme Song』Full ver. [bk1mNaiCYqA].m4a",
+    cover:
+      "https://linkstorage.linkfire.com/medialinks/images/244895fa-1213-4eb7-9582-973ceca5cdcb/artwork-440x440.jpg",
+  },
+  {
     type: "youtube",
     title: "Laters",
     artist: "Texas & Lappland",
@@ -12,6 +20,57 @@ const playlist = [
     artist: "AIYUE / Rina",
     src: "/asset/BGM/85d04fc5a7018f3fd69306027eea1d41.wav",
     cover: "asset/BGM/c7d853aac1c2c5174fc3b900ca185ca1.jpg",
+  },
+  {
+    type: "youtube",
+    title: "Boiling Blood",
+    artist: "Jason Walsh / Cristina Vee",
+    youtubeId: "Q_Fs6G77e_M",
+    cover: "https://i.scdn.co/image/ab67616d0000b2736b7aa5a4529867fcae2c7d73",
+  },
+  {
+    type: "youtube",
+    title: "Mystic Light Quest",
+    artist: "KOTONOHOUSE / Machico",
+    youtubeId: "7AtD9EjJXKo",
+    cover: "https://i.scdn.co/image/ab67616d00001e022c120f432b2f616e3900bfa9",
+  },
+  {
+    type: "youtube",
+    title: "Renegade",
+    artist: "Substantial / X.ARI",
+    youtubeId: "rJuSmn9tovI",
+    cover: "https://i.scdn.co/image/ab67616d00001e0238215dcd82b56d6ed2fc8ed0",
+  },
+  {
+    type: "youtube",
+    title: "Unmask",
+    artist: "Adam Gubman / Sarah Pinzon",
+    youtubeId: "be1-gNSj6n0",
+    cover: "https://i.scdn.co/image/ab67616d00001e02e7925efb9b5ff46a6f107545",
+  },
+  {
+    type: "youtube",
+    title: "Ambiguous Morality",
+    artist: "Anna Carmela",
+    youtubeId: "km6tW__2jaA",
+    cover: "https://i.scdn.co/image/ab67616d00001e028fb862d22040990a1e349818",
+  },
+  {
+    type: "audio",
+    title: "Crystallize",
+    artist: "Inori Minase",
+    src: "/asset/BGM/Arknights EP - [Crystallize] [2b1BiBSLCqg].m4a",
+    cover: "https://i.scdn.co/image/ab67616d00001e02c4c60ff3912bbdaf142d9c3e",
+  },
+
+  {
+    type: "youtube",
+    title: "Rain ASMR",
+    artist: "Relax Nature",
+    youtubeId: "q76bMs-NwRk",
+    cover:
+      "https://media.istockphoto.com/id/1464684269/photo/rain.webp?b=1&s=612x612&w=0&k=20&c=GEA1DZNCD9nCyJ6iTVCG-9m4-kZcChZEJg7i8ovGOKs=",
   },
 ];
 const overlay = document.getElementById("musicOverlay");
