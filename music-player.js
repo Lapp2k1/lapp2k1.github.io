@@ -58,6 +58,45 @@ const playlist = [
   },
   {
     type: "audio",
+    title: "Running In The Dark",
+    artist: "MONKEY MAJIK",
+    src: "/asset/BGM/MONKEY MAJIK - Running In The Dark【Lyric Video】（日本語字幕付） [OEePhdVLEh8].m4a",
+    cover:
+      "https://na.cdn.beatsaver.com/c5c56d9dbdee63b94a1ea916c545899adce35bd4.jpg",
+  },
+  {
+    type: "youtube",
+    title: "Speed of Light",
+    artist: "DJ OKAWARI / Ai Ninomiya",
+    youtubeId: "6C5sfOOvWwA",
+    cover:
+      "https://i1.sndcdn.com/artworks-EuRzxbLYvdAUOANn-mynXoA-t1080x1080.png",
+  },
+  {
+    type: "youtube",
+    title: "Everything's Alright",
+    artist: "DJ OKAWARI / Kaori Sawada",
+    youtubeId: "pWjJUrs6KYU",
+    cover:
+      "https://lh3.googleusercontent.com/bxAfwji3NK-dz-PdopIC8JhlnQ4T4C1Qb_uVnZzT4inPYWxcpG2g36Zubdl8XK2sGmC7JK3ELH4CnoQ3",
+  },
+  {
+    type: "youtube",
+    title: "Radiant",
+    artist: "Erik Castro / Mary Clare",
+    youtubeId: "QhUjD--UUV4",
+    cover: "https://i.scdn.co/image/ab67616d00001e021ff35c76300e4978a40360cb",
+  },
+  {
+    type: "youtube",
+    title: "Spark For Dream",
+    artist: "Obadiah Brown-Beach / Cristina Vee",
+    youtubeId: "hT8_2KAYbzs",
+    cover:
+      "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRhMkPn-InLtN4SffzhDfX_Gi4QVS1TZgmS3QzOqp7zuxdZ5L_o",
+  },
+  {
+    type: "audio",
     title: "Crystallize",
     artist: "Inori Minase",
     src: "/asset/BGM/Arknights EP - [Crystallize] [2b1BiBSLCqg].m4a",
@@ -393,9 +432,6 @@ seek.oninput = () => {
 
 audio.onended = handleEnd;
 
-function onYTState(e) {
-  if (e.data === YT.PlayerState.ENDED) handleEnd();
-}
 
 function handleEnd() {
   console.log("[HANDLE END]", {
@@ -405,23 +441,14 @@ function handleEnd() {
     song: playlist[index].title,
   });
 
-  if (loopMode === 1) {
-    playSafe();
-    return;
-  }
-
-  if (shuffle) {
-    next();
-    return;
-  }
-
-  if (loopMode === 2) {
-    next();
-    return;
-  }
-
-  console.log("[STOP] playback ended");
-  playBtn.textContent = "▶";
+ if (shuffle || loopMode === 2 || index < playlist.length - 1) {
+   next();
+   // Lưu ý: playSafe() đã được gọi bên trong hàm next() của bạn rồi
+ } else {
+   // Trường hợp hết danh sách và không lặp lại
+   playBtn.textContent = "▶";
+   stopAll();
+ }
 }
 
 function resetYouTubePlayer() {
