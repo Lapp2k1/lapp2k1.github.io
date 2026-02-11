@@ -324,6 +324,211 @@
       <h3 class="osu-title">Best Performance</h3>
       <div id="osu-best-scores" class="osu-scores"></div>
     </section>
+      <!-- Phần Arknights Profile--------------------------- -->
+<div id="ark-profile-scoped-container">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          important: '#ark-profile-scoped-container',
+          corePlugins: { preflight: false }
+        }
+    </script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        #ark-profile-scoped-container {
+            all: initial;
+            font-family: 'JetBrains Mono', monospace;
+            display: block;
+            margin: 40px auto;
+        }
+
+        .ark-panel {
+            /* THIẾT LẬP BACKGROUND LÀM NỀN */
+            background: 
+                linear-gradient(to right, rgba(10,10,10,0.95) 40%, rgba(10,10,10,0.7) 100%), 
+                url("file:///C:/Users/MSI/Desktop/Lappland art/56_i21_2.webp");
+            background-size: cover;
+            background-position: center;
+            
+            border: 1px solid rgba(0, 176, 255, 0.2);
+            position: relative;
+            color: #ffffff;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: inset 0 0 100px rgba(0,0,0,0.8);
+        }
+
+        /* Hiệu ứng Glow khi hover cả panel */
+        .ark-panel:hover {
+            border-color: rgba(0, 176, 255, 0.6);
+            box-shadow: 0 0 30px rgba(0, 176, 255, 0.15), inset 0 0 100px rgba(0,0,0,0.5);
+        }
+
+        /* Glitch Effect cho Avatar */
+        .ark-avatar-container:hover .glitch-img {
+            animation: ark-glitch 0.3s cubic-bezier(.25,.46,.45,.94) both infinite;
+            filter: grayscale(0) brightness(1.3);
+        }
+
+        @keyframes ark-glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-3px, 1px); }
+            40% { transform: translate(-1px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(1px, -1px); }
+            100% { transform: translate(0); }
+        }
+
+        /* Hover hiệu ứng cho các thẻ Stats */
+        .ark-stat-card {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.6) !important; /* Làm mờ nền để đọc số rõ hơn */
+            backdrop-filter: blur(4px);
+        }
+        .ark-stat-card:hover {
+            background: rgba(0, 176, 255, 0.15) !important;
+            transform: translateY(-3px);
+            border-color: rgba(0, 176, 255, 0.5);
+        }
+        .ark-stat-card::after {
+            content: "";
+            position: absolute;
+            bottom: 0; left: 0; width: 0; height: 3px;
+            background: #00b0ff;
+            transition: width 0.3s ease;
+        }
+        .ark-stat-card:hover::after { width: 100%; }
+
+      .ark-scanline {
+    width: 100%; 
+    height: 4px; /* Tăng độ dày một chút cho rõ */
+    background: linear-gradient(to right, transparent, rgba(0, 176, 255, 0.2), transparent);
+    box-shadow: 0 0 8px rgba(0, 176, 255, 0.3); /* Thêm chút glow cho thanh quét */
+    position: absolute;
+    left: 0;
+    z-index: 50; /* Đưa lên lớp trên cùng để không bị đè */
+    pointer-events: none;
+    animation: ark-scan-anim 8s linear infinite;
+}
+       @keyframes ark-scan-anim { 
+    0% { 
+        top: 0; 
+        opacity: 0; 
+    }
+    5% { 
+        opacity: 1; 
+    }
+    95% { 
+        opacity: 1; 
+    }
+    100% { 
+        top: 100%; 
+        opacity: 0; 
+    } 
+}
+    </style>
+
+    <div x-data="{ 
+            showUid: false, 
+            stats: { level: 120, ops: 366, sixStar: 101, m3: 106 },
+            isVisible: false 
+         }" 
+         x-intersect="isVisible = true"
+         class="ark-panel max-w-[950px] mx-auto p-8 md:p-12 group rounded-sm shadow-2xl">
+        
+        <div class="ark-scanline"></div>
+
+        <div class="flex flex-col md:flex-row justify-between items-start gap-8 mb-16 relative z-10">
+            <div class="flex items-center gap-8">
+                <div class="ark-avatar-container relative w-32 h-32 border border-cyan-500/40 p-1 bg-black/80 shadow-lg cursor-none">
+                    <div class="w-full h-full bg-[#111] overflow-hidden">
+                        <img src=" https://cdn.donmai.us/original/dc/8f/dc8f0f734b1f1a6ae6a7c5ae27c93d17.jpg" 
+                             class="glitch-img w-full h-full object-cover transition-all duration-700">
+                    </div>
+                    <div class="absolute -bottom-2 -right-2 bg-cyan-500 text-black px-3 py-0.5 text-[11px] font-black italic tracking-tighter shadow-xl">P.R.T.S</div>
+                    
+                    <div class="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-cyan-500"></div>
+                </div>
+
+                <div>
+                    <div class="flex flex-col gap-1">
+                        <div class="flex items-center gap-2">
+                            <span class="bg-white text-black px-1 text-[9px] font-black italic uppercase">Verified</span>
+                            <span class="text-cyan-500 text-[10px] tracking-[0.5em] font-bold opacity-80 uppercase leading-none">Terminal_Data</span>
+                        </div>
+                        <h2 class="text-5xl font-black m-0 tracking-tighter group-hover:text-cyan-400 transition-all duration-500 italic">
+                            LappEmToi#6728
+                        </h2>
+                        <div class="flex items-center gap-2 mt-2">
+                            <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.8)]"></span>
+                            <span class="text-gray-400 text-[10px] font-bold uppercase tracking-[0.2em]">Connection: Secure</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-right border-r-[10px] border-cyan-500 pr-6 py-2 bg-black/20 backdrop-blur-sm">
+                <span class="text-[10px] text-gray-400 block font-black tracking-widest uppercase">Rank_Lv</span>
+                <span class="text-7xl font-black text-white tracking-tighter leading-none italic drop-shadow-lg">
+                    <span x-text="isVisible ? stats.level : 0">0</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-5 relative z-10">
+            <div class="ark-stat-card p-6 border border-white/10 shadow-inner">
+                <p class="text-[10px] text-gray-500 uppercase mb-4 font-black tracking-widest border-b border-white/5 pb-2 italic">Entry_Date</p>
+                <div class="text-xl font-black text-cyan-400 italic">
+                    19 / 03 / 2020
+                </div>
+            </div>
+            
+            <div class="ark-stat-card p-6 border border-white/10 shadow-inner">
+                <p class="text-[10px] text-gray-500 uppercase mb-4 font-black tracking-widest border-b border-white/5 pb-2 italic">Op_Recruit</p>
+                <div class="text-3xl font-black italic">
+                    <span x-text="isVisible ? stats.ops : 0">0</span><span class="text-gray-600 text-sm ml-1">/405</span>
+                </div>
+            </div>
+
+            <div class="ark-stat-card p-6 border border-amber-500/20 shadow-inner shadow-amber-900/10">
+                <p class="text-[10px] text-amber-500 uppercase mb-4 font-black tracking-widest border-b border-amber-500/10 pb-2 italic">Six_Star_E2</p>
+                <div class="text-3xl font-black text-amber-500 italic drop-shadow-[0_0_10px_rgba(245,158,11,0.3)]">
+                    <span x-text="isVisible ? stats.sixStar : 0">0</span>
+                </div>
+            </div>
+
+            <div class="ark-stat-card p-6 border border-white/10 shadow-inner">
+                <p class="text-[10px] text-gray-500 uppercase mb-4 font-black tracking-widest border-b border-white/5 pb-2 italic">Skill_M3</p>
+                <div class="text-3xl font-black italic">
+                    <span x-text="isVisible ? stats.m3 : 0">0</span><span style="display: none;" class="text-cyan-600 text-[10px] ml-2 font-black border border-cyan-600 px-1">MAX</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-12 flex flex-col md:flex-row justify-between items-center gap-6 pt-8 border-t border-white/10 relative z-10">
+            <div class="flex items-center gap-6">
+                <div class="text-[11px] font-bold">
+                    <span class="text-gray-600 tracking-tighter">ENCRYPTED_UID:</span>
+                    <span class="text-gray-200 ml-3 tracking-[0.3em]" x-text="showUid ? 'showcc' : '••••••••'"></span>
+                </div>
+                <button @click="showUid = !showUid" 
+                        class="bg-cyan-600/20 border border-cyan-500/50 text-cyan-400 text-[10px] px-4 py-1.5 hover:bg-cyan-500 hover:text-black transition-all font-black uppercase tracking-widest italic">
+                    Decrypt_Data
+                </button>
+            </div>
+
+            <div class="text-[9px] text-gray-600 font-bold uppercase tracking-widest bg-black/40 px-3 py-1">
+                CORE SYSTEM: Zeroth Order Oil Tank OS // Rhodes_Island_Terminal
+            </div>
+        </div>
+    </div>
+</div>
 
     <!-- Phần Projects--------------------------- -->
     <section id="projects" class="my-projects">

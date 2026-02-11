@@ -191,7 +191,6 @@ function renderOne(c) {
   box.appendChild(div);
 }
 
-
 // ===== LOAD COMMENTS =====
 async function load() {
   const res = await fetch(API + "/comments");
@@ -234,7 +233,6 @@ async function del(id) {
   // ❌ ĐỪNG load() NGAY
 }
 
-
 // ===== UTILS =====
 function escapeHtml(text) {
   return text.replace(
@@ -252,3 +250,82 @@ function escapeHtml(text) {
 
 // ===== INIT =====
 load();
+
+(function () {
+  // Isolated Mock Data
+  const playerData = {
+    name: "Doctor",
+    server: "Global",
+    level: 120,
+    uid: "12345678",
+    daysPlayed: 1240,
+    storyProgress: "13-10",
+    annihilation: 400,
+    totalOps: 285,
+    sixStars: 72,
+    assistant: "Amiya",
+    e2Count: 110,
+    mastery3: 45,
+  };
+
+  const container = document.getElementById("ark-profile-root");
+
+  const profileHTML = `
+        <div id="ark-profile-wrapper">
+            <div class="ark-header">
+                <div class="ark-name-box">
+                    <span class="ark-label">${playerData.server} SERVER</span>
+                    <h2>${playerData.name} <span style="color:var(--ark-accent)">Lv.${playerData.level}</span></h2>
+                    <span class="ark-uid" id="ark-uid-val">UID: ********</span>
+                    <button id="uid-toggle" style="background:none; border:none; color:var(--ark-accent); cursor:pointer; font-size:10px;">SHOW</button>
+                </div>
+                <div class="ark-operator-display">
+                    <div class="ark-avatar"></div>
+                    <div>
+                        <span class="ark-label">Assistant</span>
+                        <div class="ark-value">${playerData.assistant}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ark-grid">
+                <div class="ark-card">
+                    <span class="ark-label">Account Progress</span>
+                    <div class="ark-value">${playerData.daysPlayed}<span class="ark-value-sub">Days</span></div>
+                    <div class="ark-value">${playerData.storyProgress}<span class="ark-value-sub">Main Story</span></div>
+                </div>
+                
+                <div class="ark-card">
+                    <span class="ark-label">Operator Collection</span>
+                    <div class="ark-value">${playerData.totalOps} <span class="ark-value-sub">Total</span></div>
+                    <div class="ark-value" style="color:#ffb300">${playerData.sixStars} <span class="ark-value-sub">6★ Ops</span></div>
+                </div>
+
+                <div class="ark-card">
+                    <span class="ark-label">Elite Promotion</span>
+                    <div class="ark-value">${playerData.e2Count} <span class="ark-value-sub">Elite 2</span></div>
+                    <div class="ark-value">${playerData.mastery3} <span class="ark-value-sub">M3 Skills</span></div>
+                </div>
+
+                <div class="ark-card">
+                    <span class="ark-label">Combat Record</span>
+                    <div class="ark-value">${playerData.annihilation} <span class="ark-value-sub">Annihilation Max</span></div>
+                </div>
+            </div>
+        </div>
+    `;
+
+  // Safe injection
+  container.innerHTML = profileHTML;
+
+  // Interaction Logic
+  const toggleBtn = document.getElementById("uid-toggle");
+  const uidSpan = document.getElementById("ark-uid-val");
+  let hidden = true;
+
+  toggleBtn.addEventListener("click", () => {
+    hidden = !hidden;
+    uidSpan.textContent = hidden ? "UID: ********" : `UID: ${playerData.uid}`;
+    toggleBtn.textContent = hidden ? "SHOW" : "HIDE";
+  });
+})();
