@@ -350,8 +350,8 @@
         .ark-panel {
             /* THIẾT LẬP BACKGROUND LÀM NỀN */
             background: 
-                linear-gradient(to right, rgba(10,10,10,0.95) 40%, rgba(10,10,10,0.7) 100%), 
-                url("file:///C:/Users/MSI/Desktop/Lappland art/56_i21_2.webp");
+                linear-gradient(to right, rgba(10,10,10,0.45) 40%, rgba(10,10,10,0.7) 100%), 
+                url("/asset/Lappland/56_i21_2.webp");
             background-size: cover;
             background-position: center;
             
@@ -388,7 +388,7 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            background: rgba(0, 0, 0, 0.6) !important; /* Làm mờ nền để đọc số rõ hơn */
+    
             backdrop-filter: blur(4px);
         }
         .ark-stat-card:hover {
@@ -473,7 +473,7 @@
                 </div>
             </div>
 
-            <div class="text-right border-r-[10px] border-cyan-500 pr-6 py-2 bg-black/20 backdrop-blur-sm">
+            <div class="text-right border-r-[10px] border-cyan-500 pr-6 py-2 backdrop-blur-sm">
                 <span class="text-[10px] text-gray-400 block font-black tracking-widest uppercase">Rank_Lv</span>
                 <span class="text-7xl font-black text-white tracking-tighter leading-none italic drop-shadow-lg">
                     <span x-text="isVisible ? stats.level : 0">0</span>
@@ -523,7 +523,7 @@
                 </button>
             </div>
 
-            <div class="text-[9px] text-gray-600 font-bold uppercase tracking-widest bg-black/40 px-3 py-1">
+            <div class="text-[9px] text-gray-600 font-bold uppercase tracking-widest px-3 py-1">
                 CORE SYSTEM: Zeroth Order Oil Tank OS // Rhodes_Island_Terminal
             </div>
         </div>
@@ -852,4 +852,5 @@
     <div id="mp-notice" class="mp-notice"></div>
   </body>
   <script src="/index.js"></script>
+  <script src="/app.js"></script>
 </html>
