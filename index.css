@@ -113,17 +113,24 @@ h1 + p {
   }
 }
 
+.sectionhero .img-wrapper {
+  /* Wrapper giữ nguyên kích thước để con trỏ chuột luôn nằm bên trong */
+  display: inline-block;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
 .sectionhero img {
   border-radius: 50%;
   padding: 9px;
   background-image: linear-gradient(180deg, #8000ff 0%, #00fdee 100%);
   background-repeat: no-repeat;
   box-sizing: border-box;
-  transition: transform 0.5s;
-  transform-style: preserve-3d;
 }
-.sectionhero img:hover {
-  animation: flip 3s infinite;
+
+/* Khi hover vào Wrapper thì Ảnh mới xoay */
+.sectionhero .img-wrapper:hover img {
+  animation: flip 3s linear infinite;
 }
 /* Phần Tech Stack--------------------------- */
 .note {
@@ -344,7 +351,9 @@ h1 + p {
   background: conic-gradient(from 0deg, #8000ff, #00fdee, #ff0080, #8000ff);
   animation: rotate-gradient 4s linear infinite;
   box-sizing: border-box;
-  transition: transform 0.5s, box-shadow 0.5s;
+  transition:
+    transform 0.5s,
+    box-shadow 0.5s;
 }
 
 /* Glow động bằng :after */
@@ -365,7 +374,9 @@ h1 + p {
 /* Hover avatar: pop + shadow */
 .osu-avatar:hover {
   transform: scale(1.15) rotateY(10deg);
-  box-shadow: 0 0 30px rgba(128, 0, 255, 0.7), 0 0 50px rgba(0, 253, 238, 0.6);
+  box-shadow:
+    0 0 30px rgba(128, 0, 255, 0.7),
+    0 0 50px rgba(0, 253, 238, 0.6);
 }
 
 /* Gradient xoay */
@@ -591,7 +602,8 @@ h1 + p {
   margin: 40px auto;
 }
 
-input, textarea {
+input,
+textarea {
   width: 100%;
   background: #222;
   color: #eee;
@@ -673,7 +685,9 @@ h3 {
   color: white;
 }
 .projects-row {
-  transition: transform 1ms, box-shadow 1ms;
+  transition:
+    transform 1ms,
+    box-shadow 1ms;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

@@ -39,7 +39,7 @@
   const MOVE_SPEED = 200,
     ARRIVE_DISTANCE = 10;
 
-  // --- 1. TỰ ĐỘNG LOAD THƯ VIỆN SPINE NẾU CHƯA CÓ ---
+  // --- 1. LOAD THƯ VIỆN ---
   function loadDependencies(callback) {
     if (window.spine) return callback();
     const script = document.createElement("script");
@@ -48,8 +48,9 @@
     document.head.appendChild(script);
   }
 
-  // --- 2. TẠO CANVAS LỚP PHỦ (OVERLAY) ---
+  // --- 2. TẠO CANVAS ---
   function createOverlayCanvas() {
+    if (canvas) return; // Không tạo trùng
     canvas = document.createElement("canvas");
     canvas.id = "spine-overlay-canvas";
     Object.assign(canvas.style, {
@@ -58,7 +59,7 @@
       left: "0",
       width: "100vw",
       height: "100vh",
-      pointerEvents: "none", // Để không chặn click vào trang web gốc
+      pointerEvents: "none",
       zIndex: "9999",
     });
     document.body.appendChild(canvas);
@@ -66,16 +67,17 @@
     gl = canvas.getContext("webgl", { alpha: true });
     renderer = new spine.webgl.SceneRenderer(canvas, gl);
 
-    window.addEventListener("resize", () => {
+    const resize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-    });
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    };
+    window.addEventListener("resize", resize);
+    resize();
   }
 
-  // --- 3. LOGIC LOAD MODEL ---
+  // --- 3. LOAD MODEL ---
   async function loadModel(presetKey) {
+    if (!canvas) createOverlayCanvas(); // Tạo canvas ngay khi gọi model
     const config = PRESETS[presetKey];
     if (!config || !gl) return;
 
@@ -106,11 +108,17 @@
       state = new spine.AnimationState(new spine.AnimationStateData(skelData));
       state.data.defaultMix = 0.3;
 
-      // Kế thừa trạng thái
+      // Kế thừa state cũ
       skeleton.x = characterPos.x;
       skeleton.y = characterPos.y;
       skeleton.scaleX = currentScaleX;
       state.setAnimation(0, isWalking ? "Move" : "Sit", true);
+
+      // Bắt đầu vòng lặp render nếu chưa chạy
+      if (!window.isSpineLoopRunning) {
+        window.isSpineLoopRunning = true;
+        requestAnimationFrame(renderLoop);
+      }
     } catch (e) {
       console.error("Spine Load Error:", e);
     }
@@ -118,31 +126,27 @@
 
   // --- 4. TƯƠNG TÁC ---
   function setupEvents() {
-    // Theo dõi chuột toàn trang
     window.addEventListener("mousemove", (e) => {
+      // FIX LỖI: Chỉ tính toán nếu canvas đã sẵn sàng
+      if (!canvas) return;
       mouseWorldPos.x = (e.clientX - canvas.width / 2) / modelScale;
       mouseWorldPos.y = (canvas.height / 2 - e.clientY) / modelScale;
     });
 
-    // Tab để đổi model
     window.addEventListener("keydown", (e) => {
       if (e.key === "Tab") {
-        e.preventDefault();
         const keys = Object.keys(PRESETS);
+        if (!skeleton) return; // Chỉ Tab khi đã triệu hồi model
+        e.preventDefault();
         currentModelIndex = (currentModelIndex + 1) % keys.length;
         loadModel(keys[currentModelIndex]);
       }
     });
 
-    // Easter Egg: Bấm vào bất kỳ đâu chứa từ khóa
     document.addEventListener("click", (e) => {
       if (e.target.innerText) {
         const text = e.target.innerText.toLowerCase();
         if (KEYWORDS.some((k) => text.includes(k))) {
-          if (!canvas) {
-            createOverlayCanvas();
-            requestAnimationFrame(renderLoop);
-          }
           const keys = Object.keys(PRESETS);
           loadModel(keys[currentModelIndex]);
         }
@@ -177,9 +181,11 @@
         isWalking = false;
       }
 
+      // Gán giá trị trước khi update để tránh nháy hình
       skeleton.x = characterPos.x;
       skeleton.y = characterPos.y;
       skeleton.scaleX = currentScaleX;
+
       state.update(delta);
       state.apply(skeleton);
       skeleton.updateWorldTransform();
@@ -196,9 +202,7 @@
     requestAnimationFrame(renderLoop);
   }
 
-  // Khởi chạy chờ Easter Egg
   loadDependencies(() => {
-    console.log("Lappland Script Ready. Click a keyword to summon.");
     setupEvents();
   });
 })();
